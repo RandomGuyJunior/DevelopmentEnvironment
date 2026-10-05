@@ -1,6 +1,6 @@
 return {
 	name = "Underwater Advanced Fusion",
-	description = "Faction-specific advanced underwater fusion reactors",
+	description = "Faction-specific advanced underwater fusion reactors for BAR",
 	shortname = "UWAFUS",
 	version = "$VERSION",
 	mutator = "Underwater AFUS",
