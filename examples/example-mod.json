@@ -1,0 +1,10 @@
+{
+  "id": "example-mod",
+  "name": "Example Mod",
+  "author": "RandomGuyJunior",
+  "description": "Template entry. Copy this into mods.json when a real Rapid package exists.",
+  "version": "test",
+  "rapid_tag": "example-mod:test",
+  "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
+  "enabled": false
+}
