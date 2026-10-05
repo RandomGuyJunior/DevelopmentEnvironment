@@ -30,9 +30,9 @@ jobs:
           test -f objects3d/Units/coruwafus.s3o
           test -f objects3d/Units/leguwafus.s3o
 
-      - name: Publish underwater-afus:test
+      - name: Publish randomguy-hosting:underwater-afus
         uses: beyond-all-reason/rapid-hosting/action@b4a7a7ea2deb83ed89b02d4cb2e531311e0f4b00
         with:
           url: https://randomguyrapid.duckdns.org/build
-          repo: underwater-afus
-          branch: test
+          repo: randomguy-hosting
+          branch: underwater-afus
