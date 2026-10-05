@@ -1,0 +1,44 @@
+name: Build Underwater AFUS Models
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/build_naval_afus_models.py"
+      - ".github/workflows/build-underwater-afus-models.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Build underwater advanced fusion S3Os
+        run: |
+          python3 tools/build_naval_afus_models.py
+
+      - name: Commit generated models
+        run: |
+          if git diff --quiet -- \
+            objects3d/Units/armuwafus.s3o \
+            objects3d/Units/coruwafus.s3o \
+            objects3d/Units/leguwafus.s3o; then
+            echo "Models unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            objects3d/Units/armuwafus.s3o \
+            objects3d/Units/coruwafus.s3o \
+            objects3d/Units/leguwafus.s3o
+          git commit -m "Build underwater AFUS models"
+          git pull --rebase origin main
+          git push origin HEAD:main
