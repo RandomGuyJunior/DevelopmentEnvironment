@@ -1,0 +1,36 @@
+name: Build Underwater AFUS Models
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - testing
+    paths:
+      - "mods/underwater-afus/tools/generate_models.py"
+      - ".github/workflows/build-underwater-afus-models.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: testing
+
+      - name: Generate underwater AFUS S3Os
+        run: python3 mods/underwater-afus/tools/generate_models.py
+
+      - name: Commit generated models
+        run: |
+          if git diff --quiet -- mods/underwater-afus/objects3d/Units; then
+            echo "Models unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mods/underwater-afus/objects3d/Units
+          git commit -m "Generate underwater AFUS models"
+          git push origin HEAD:testing
