@@ -1,0 +1,38 @@
+name: Publish Underwater AFUS Rapid
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "modinfo.lua"
+      - "units/**"
+      - "unitpics/**"
+      - "objects3d/Units/armuwafus.s3o"
+      - "objects3d/Units/coruwafus.s3o"
+      - "objects3d/Units/leguwafus.s3o"
+      - ".github/workflows/rapid-underwater-afus.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  rapid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify generated models exist
+        run: |
+          test -f objects3d/Units/armuwafus.s3o
+          test -f objects3d/Units/coruwafus.s3o
+          test -f objects3d/Units/leguwafus.s3o
+
+      - name: Publish underwater-afus:test
+        uses: beyond-all-reason/rapid-hosting/action@b4a7a7ea2deb83ed89b02d4cb2e531311e0f4b00
+        with:
+          url: https://randomguyrapid.duckdns.org/build
+          repo: underwater-afus
+          branch: test
