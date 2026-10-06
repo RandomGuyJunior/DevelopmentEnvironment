@@ -1,4 +1,15 @@
 {
   "schema_version": 1,
-  "mods": []
+  "mods": [
+    {
+      "id": "underwater-afus",
+      "name": "Underwater Advanced Fusion",
+      "author": "RandomGuyJunior",
+      "description": "1 step at making sea as impactful as land.",
+      "version": "test",
+      "rapid_tag": "underwater-afus:test",
+      "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
+      "enabled": true
+    }
+  ]
 }
