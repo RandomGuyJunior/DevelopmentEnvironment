@@ -1,27 +1,82 @@
-name: Publish Underwater AFUS Rapid
+name: Publish Development Mods Rapid
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "NavalAfus/**"
+      - "mods.json"
+      - ".github/workflows/rapid-underwater-afus.yml"
   workflow_dispatch:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
+
+concurrency:
+  group: development-mods-rapid
+  cancel-in-progress: false
 
 jobs:
-  rapid:
+  discover:
     runs-on: ubuntu-latest
+    outputs:
+      mods: ${{ steps.catalog.outputs.mods }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Verify generated models exist
+      - id: catalog
+        shell: bash
         run: |
-          test -f NavalAfus/objects3d/Units/armuwafus.s3o
-          test -f NavalAfus/objects3d/Units/coruwafus.s3o
-          test -f NavalAfus/objects3d/Units/leguwafus.s3o
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          catalog = json.loads(Path("mods.json").read_text())
+          mods = []
+          for mod in catalog["mods"]:
+              if mod.get("enabled") is False:
+                  continue
+              mod_id = mod["id"]
+              source = mod["source_dir"]
+              if not mod_id.replace("-", "").isalnum() or "/" in mod_id:
+                  raise ValueError(f"Invalid mod id: {mod_id}")
+              if Path(source).is_absolute() or ".." in Path(source).parts or not (Path(source) / "modinfo.lua").is_file():
+                  raise ValueError(f"Invalid mod source: {source}")
+              expected = f"development-environment:{mod_id}"
+              if mod["rapid_tag"] != expected:
+                  raise ValueError(f"Catalog rapid_tag must be {expected}")
+              mods.append({"id": mod_id, "source": source})
+          print("mods=" + json.dumps(mods, separators=(",", ":")))
+          PY
 
-      - name: Publish underwater-afus:test
+  publish:
+    needs: discover
+    if: ${{ needs.discover.outputs.mods != '[]' }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        mod: ${{ fromJson(needs.discover.outputs.mods) }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare independent Rapid package commit
+        id: package
+        shell: bash
+        env:
+          MOD_ID: ${{ matrix.mod.id }}
+          MOD_SOURCE: ${{ matrix.mod.source }}
+        run: |
+          set -euo pipefail
+          sha="$(git subtree split --prefix="$MOD_SOURCE" HEAD)"
+          git push origin "$sha:refs/heads/rapid-package/$MOD_ID"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+      - name: Publish individual Rapid tag
         uses: beyond-all-reason/rapid-hosting/action@b4a7a7ea2deb83ed89b02d4cb2e531311e0f4b00
         with:
           url: https://randomguyrapid.duckdns.org/build
-          repo: underwater-afus
-          branch: test
+          repo: development-environment
+          branch: ${{ matrix.mod.id }}
+          commit: ${{ steps.package.outputs.sha }}
