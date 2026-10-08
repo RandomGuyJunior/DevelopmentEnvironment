@@ -41,7 +41,7 @@ jobs:
                   raise ValueError(f"Invalid mod id: {mod_id}")
               if Path(source).is_absolute() or ".." in Path(source).parts or not (Path(source) / "modinfo.lua").is_file():
                   raise ValueError(f"Invalid mod source: {source}")
-              expected = f"development-environment:{mod_id}"
+              expected = f"dev-mods:{mod_id}"
               if mod["rapid_tag"] != expected:
                   raise ValueError(f"Catalog rapid_tag must be {expected}")
               mods.append({"id": mod_id, "source": source})
@@ -77,6 +77,6 @@ jobs:
         uses: beyond-all-reason/rapid-hosting/action@b4a7a7ea2deb83ed89b02d4cb2e531311e0f4b00
         with:
           url: https://randomguyrapid.duckdns.org/build
-          repo: development-environment
+          repo: dev-mods
           branch: ${{ matrix.mod.id }}
           commit: ${{ steps.package.outputs.sha }}
