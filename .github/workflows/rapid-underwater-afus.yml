@@ -5,7 +5,7 @@ on:
 
 permissions:
   id-token: write
-  contents: write
+  contents: read
 
 concurrency:
   group: development-mods-rapid
@@ -55,22 +55,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Prepare independent Rapid package commit
-        id: package
-        shell: bash
-        env:
-          MOD_ID: ${{ matrix.mod.id }}
-          MOD_SOURCE: ${{ matrix.mod.source }}
-        run: |
-          set -euo pipefail
-          sha="$(git subtree split --prefix="$MOD_SOURCE" HEAD)"
-          git push origin "$sha:refs/heads/rapid-package/$MOD_ID"
-          echo "sha=$sha" >> "$GITHUB_OUTPUT"
-
       - name: Publish individual Rapid tag
-        uses: beyond-all-reason/rapid-hosting/action@b4a7a7ea2deb83ed89b02d4cb2e531311e0f4b00
+        uses: RandomGuyJunior/rapid-hosting/action@feature/native-multimod
         with:
           url: https://randomguyrapid.duckdns.org/build
           repo: dev-mods
           branch: ${{ matrix.mod.id }}
-          commit: ${{ steps.package.outputs.sha }}
+          mod-root: ${{ matrix.mod.source }}
