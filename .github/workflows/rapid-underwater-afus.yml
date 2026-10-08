@@ -2,13 +2,15 @@ name: Publish Development Mods Rapid
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 permissions:
   id-token: write
   contents: read
 
 concurrency:
-  group: development-mods-rapid
+  group: development-mods-rapid-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
