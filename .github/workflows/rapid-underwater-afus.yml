@@ -56,7 +56,7 @@ jobs:
           fetch-depth: 0
 
       - name: Publish individual Rapid tag
-        uses: RandomGuyJunior/rapid-hosting/action@feature/native-multimod
+        uses: RandomGuyJunior/rapid-hosting/action@dev
         with:
           url: https://randomguyrapid.duckdns.org/build
           repo: dev-mods
