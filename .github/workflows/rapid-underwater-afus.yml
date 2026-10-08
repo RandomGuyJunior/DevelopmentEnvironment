@@ -3,10 +3,6 @@ name: Publish Development Mods Rapid
 on:
   push:
     branches: [main]
-    paths:
-      - "NavalAfus/**"
-      - "mods.json"
-      - ".github/workflows/rapid-underwater-afus.yml"
   workflow_dispatch:
 
 permissions:
