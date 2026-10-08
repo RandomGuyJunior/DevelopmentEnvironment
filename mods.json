@@ -7,7 +7,7 @@
       "author": "RandomGuyJunior",
       "description": "1 step at making sea as impactful as land.",
       "version": "test",
-      "rapid_tag": "development-environment:underwater-afus",
+      "rapid_tag": "dev-mods:underwater-afus",
       "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
       "enabled": true,
       "source_dir": "NavalAfus"
