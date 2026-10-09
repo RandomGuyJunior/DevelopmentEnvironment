@@ -1,0 +1,32 @@
+name: Epic Bastion Legion Armor V4
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-epic-bastion-legion-armor.yml"
+      - "tools/build_epic_bastion_legion_armor.py"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender
+        run: sudo apt-get update && sudo apt-get install -y blender python3-numpy libegl1 libgl1 libgl1-mesa-dri xvfb
+      - name: Import Epic Bastion source
+        run: xvfb-run -a blender --background --python tools/import_epic_bastion_blender.py
+      - name: Apply actual script pose
+        run: xvfb-run -a blender --background --python tools/pose_epic_bastion_blender.py
+      - name: Build Legion-derived armored shell and render
+        run: |
+          xvfb-run -a blender --background --python tools/build_epic_bastion_legion_armor.py
+          test -s epic_bastion_legion_armor_v4.blend
+          test -s epic_bastion_legion_armor_v4.glb
+          test -s epic_bastion_legion_armor_v4.png
+      - name: Upload model and preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: epic-bastion-legion-armor-v4
+          path: |
+            epic_bastion_legion_armor_v4.blend
+            epic_bastion_legion_armor_v4.glb
+            epic_bastion_legion_armor_v4.png
