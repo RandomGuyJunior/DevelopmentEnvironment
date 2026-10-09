@@ -46,7 +46,7 @@ for i in (1,2,3):
     parent=bpy.data.objects["extension_root_"+str(i)]
     housing=bpy.data.objects.new("gauss%d_integrated_mount"%i,None)
     build.objects.link(housing);housing.parent=parent
-    housing.location=(0,-28,57)
+    housing.location=(0,-28,-76)
     # Load-bearing armored socket / turning race / deep mechanical turret.
     square("gauss%d lower bridge"%i,24,-13,24,11,20,10,"dark",housing)
     square("gauss%d load frame"%i,7,-27,24,19,19,17,"main",housing)
@@ -83,6 +83,9 @@ for n,loc,power,size in [("key",(90,-180,275),32000,155),("fill",(-165,-65,200),
     ld=bpy.data.lights.new(n,'AREA');obj=bpy.data.objects.new(n,ld);scene.collection.objects.link(obj)
     obj.location=loc;obj.rotation_euler=(target-obj.location).to_track_quat('-Z','Y').to_euler();ld.energy=power;ld.shape='DISK';ld.size=size
 scene.world.color=(.7,.7,.7)
+scene.view_settings.view_transform="Standard"
+scene.view_settings.look="Medium High Contrast"
+scene.view_settings.exposure=1.15
 scene.render.engine="BLENDER_EEVEE";scene.render.resolution_x=1200;scene.render.resolution_y=1050;scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="PNG"
 scene.render.filepath=str(P/"epic_bastion_v5_connected.png")
