@@ -71,9 +71,7 @@ dependent mods first, then uninstall the prerequisite if desired.
 Disabling a mod is not uninstalling it.
 
 **Storage safety:** Rapid's `data/pool` contains files shared by multiple
-packages and is not deleted by Mod Hub uninstall. Base BAR, Chobby and
-RandomGuy Hosting packages are never optional Mod Hub uninstall targets.
-A successful uninstall therefore may free little disk space.
+packages and is not deleted by Mod Hub uninstall.
 
 **Important distinction:** `mods.json` `dependencies` controls the Mod
 Hub's *download and uninstall management*. The package's own
@@ -86,7 +84,7 @@ orphan-dependency cleanup.
 
 ## Spring/BAR mod package structure
 
-A RandomGuy mod is an overlay package. Its directory layout should mirror the BAR paths it wants to add or replace. Files not supplied by the mod continue to come from its dependency.
+A mod is an overlay package. Its directory layout should mirror the BAR paths it wants to add or replace. Files not supplied by the mod continue to come from its dependency.
 
 A minimal mutator can look like this:
 
