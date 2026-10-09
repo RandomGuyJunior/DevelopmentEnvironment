@@ -21,3 +21,5 @@ jobs:
           path: |
             legbastion_original.blend
             legbastion_piece_report.txt
+            legbastion_original.glb
+            legbastion_original_preview.png
