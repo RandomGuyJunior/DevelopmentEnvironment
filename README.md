@@ -20,8 +20,69 @@ Optional fields:
 - `version`
 - `homepage`
 - `enabled` (defaults to true)
+- `dependencies` (array of other catalog mod ids or exact `dev-mods:` Rapid tags)
 
 The catalog only makes a Rapid package discoverable before it is installed. The package itself is still a normal Spring/Recoil game or mutator and therefore needs its own `modinfo.lua`.
+
+
+## Mod Hub dependencies: automatic installation and removal
+
+To require another **optional Mod Hub mod**, declare `dependencies` in your
+entry in this repository's `mods.json`. Use the other mod's exact catalog
+`id` (recommended) or its full `dev-mods:...` Rapid tag.
+
+```json
+{
+  "schema_version": 1,
+  "mods": [
+    {
+      "id": "shared-effects",
+      "name": "Shared Effects",
+      "rapid_tag": "dev-mods:shared-effects",
+      "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
+      "enabled": true
+    },
+    {
+      "id": "ocean-units",
+      "name": "Ocean Units",
+      "rapid_tag": "dev-mods:ocean-units",
+      "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
+      "dependencies": ["shared-effects"],
+      "enabled": true
+    }
+  ]
+}
+```
+
+When a player clicks **Install** for Ocean Units, the Mod Hub resolves its
+dependency graph from the published catalog, installs Shared Effects first,
+then Ocean Units. This also works for dependencies of dependencies.
+Already-installed dependencies are not downloaded again. Missing or disabled
+dependencies, invalid Rapid tags, and dependency cycles stop the installation
+before any download begins. If a download fails, remaining downloads are
+cancelled; successfully downloaded prerequisites remain installed.
+
+**Uninstall:** The trash icon removes only the selected mod's Rapid package
+manifest (`data/packages/<package-hash>.sdp`) and its Mod Hub installed state.
+It does **not** automatically uninstall dependencies: another mod may use them,
+or the player may want to keep them. The Mod Hub refuses to uninstall a mod
+while another **installed** catalog mod lists it as a dependency. Remove
+dependent mods first, then uninstall the prerequisite if desired.
+Disabling a mod is not uninstalling it.
+
+**Storage safety:** Rapid's `data/pool` contains files shared by multiple
+packages and is not deleted by Mod Hub uninstall. Base BAR, Chobby and
+RandomGuy Hosting packages are never optional Mod Hub uninstall targets.
+A successful uninstall therefore may free little disk space.
+
+**Important distinction:** `mods.json` `dependencies` controls the Mod
+Hub's *download and uninstall management*. The package's own
+`modinfo.lua` `depend = { ... }` controls Spring/Recoil archive loading.
+Declare the appropriate engine dependencies in `modinfo.lua` too; the Mod
+Hub catalog field does not replace them. Mod Hub dependency references must
+point to mods in the same published catalog, not arbitrary external URLs.
+This initial implementation does not support version constraints or automatic
+orphan-dependency cleanup.
 
 ## Spring/BAR mod package structure
 
