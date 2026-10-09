@@ -1,0 +1,34 @@
+name: Review Epic Bastion Script Pose
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/review-epic-bastion-pose.yml"
+      - "tools/pose_epic_bastion_blender.py"
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender
+        run: sudo apt-get update && sudo apt-get install -y blender python3-numpy libegl1 libgl1 libgl1-mesa-dri xvfb
+      - name: Import original source model
+        run: xvfb-run -a blender --background --python tools/import_epic_bastion_blender.py
+      - name: Apply actual Lua script rotations and render views
+        run: |
+          xvfb-run -a blender --background --python tools/pose_epic_bastion_blender.py
+          test -s legbastiont3_script_pose.blend
+          test -s legbastiont3_script_pose.glb
+          test -s legbastiont3_script_pose_isometric.png
+          test -s legbastiont3_script_pose_top.png
+          test -s legbastiont3_script_pose_side.png
+      - name: Upload review files
+        uses: actions/upload-artifact@v4
+        with:
+          name: epic-bastion-script-pose-review
+          path: |
+            legbastiont3_script_pose.blend
+            legbastiont3_script_pose.glb
+            legbastiont3_script_pose_isometric.png
+            legbastiont3_script_pose_top.png
+            legbastiont3_script_pose_side.png
