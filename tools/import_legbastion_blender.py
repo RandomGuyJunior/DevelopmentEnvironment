@@ -57,3 +57,5 @@ root=piece(h[7])
 pathlib.Path("legbastion_piece_report.txt").write_text("Original BAR legbastion.s3o\nradius: %s height: %s\n"%(h[2],h[3])+"\n".join(map(str,report)))
 bpy.ops.wm.save_as_mainfile(filepath=str(pathlib.Path("legbastion_original.blend").resolve()))
 print("Converted",len(report),"pieces")
+
+# Trigger reference Blender conversion through the GitHub Actions push workflow.
