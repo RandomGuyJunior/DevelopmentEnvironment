@@ -9,6 +9,6 @@ return {
 	modtype = 1,
 
 	depend = {
-		"rapid://byar:test",
+		"rapid://randomguy-hosting:test",
 	},
 }
