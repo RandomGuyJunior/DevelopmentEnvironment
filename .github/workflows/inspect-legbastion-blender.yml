@@ -1,0 +1,23 @@
+name: Inspect Original Legion Bastion in Blender
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/inspect-legbastion-blender.yml"
+      - "tools/import_legbastion_blender.py"
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender
+        run: sudo apt-get update && sudo apt-get install -y blender
+      - name: Convert original S3O to Blender
+        run: blender --background --python tools/import_legbastion_blender.py
+      - name: Upload native Blender model and piece report
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-legion-bastion-blender
+          path: |
+            legbastion_original.blend
+            legbastion_piece_report.txt
