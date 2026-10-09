@@ -62,3 +62,40 @@ bpy.ops.wm.save_as_mainfile(filepath=str(pathlib.Path("legbastion_original.blend
 print("Converted",len(report),"pieces")
 
 # Trigger reference Blender conversion through the GitHub Actions push workflow.
+
+# Produce a visual verification render and interactive format from the same scene.
+import math
+from mathutils import Vector
+meshes=[o for o in bpy.context.scene.objects if o.type=='MESH']
+for o in bpy.context.selected_objects: o.select_set(False)
+for o in meshes: o.select_set(True)
+if meshes: bpy.context.view_layer.objects.active=meshes[0]
+bpy.ops.export_scene.gltf(filepath=str(pathlib.Path("legbastion_original.glb").resolve()),export_format='GLB',use_selection=False)
+bpy.ops.object.select_all(action='DESELECT')
+world=bpy.context.scene.world
+if world:
+ world.color=(0.16,0.18,0.21)
+camera_data=bpy.data.cameras.new("Reference camera")
+camera=bpy.data.objects.new("Reference camera",camera_data)
+bpy.context.collection.objects.link(camera)
+bpy.context.scene.camera=camera
+camera.location=(220,-260,195)
+target=Vector((0,0,63))
+camera.rotation_euler=(target- camera.location).to_track_quat('-Z','Y').to_euler()
+camera_data.type='ORTHO'
+camera_data.ortho_scale=240
+for name,loc,power,size in [("Key",(130,-115,260),30000,160),("Fill",(-170,-30,150),18000,120),("Rim",(0,140,250),24000,140)]:
+ ld=bpy.data.lights.new(name,'AREA');lo=bpy.data.objects.new(name,ld);bpy.context.collection.objects.link(lo);lo.location=loc
+ lo.rotation_euler=(target-lo.location).to_track_quat('-Z','Y').to_euler()
+ ld.energy=power;ld.shape='DISK';ld.size=size
+sc=bpy.context.scene
+sc.render.engine='BLENDER_EEVEE'
+sc.render.resolution_x=1100
+sc.render.resolution_y=1000
+sc.render.resolution_percentage=100
+sc.render.image_settings.file_format='PNG'
+sc.render.filepath=str(pathlib.Path("legbastion_original_preview.png").resolve())
+sc.camera.data.lens=35
+sc.render.film_transparent=True
+bpy.ops.render.render(write_still=True)
+print("Rendered reference preview and exported GLB")
