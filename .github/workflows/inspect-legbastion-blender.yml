@@ -11,9 +11,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Blender
-        run: sudo apt-get update && sudo apt-get install -y blender
+        run: sudo apt-get update && sudo apt-get install -y blender python3-numpy
       - name: Convert original S3O to Blender
-        run: blender --background --python tools/import_legbastion_blender.py
+        run: |
+          blender --background --python tools/import_legbastion_blender.py
+          test -s legbastion_original.blend
+          test -s legbastion_original.glb
+          test -s legbastion_original_preview.png
       - name: Upload native Blender model and piece report
         uses: actions/upload-artifact@v4
         with:
