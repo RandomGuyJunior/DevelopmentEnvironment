@@ -37,6 +37,9 @@ def piece(off,parent=None):
     a,b,c=last[-3:]
     if len({a,b,c})==3 and max(a,b,c)<nv:faces.append((b,a,c) if flip else (a,b,c))
     flip=not flip
+ elif prim==2: # S3O quad list: four local indices per face
+  faces=[tuple(inds[i:i+4]) for i in range(0,ni-3,4)
+         if len(set(inds[i:i+4]))==4 and max(inds[i:i+4])<nv]
  if faces:
   mesh=bpy.data.meshes.new(nm);mesh.from_pydata(verts,[],faces);mesh.update()
   obj=bpy.data.objects.new(nm,mesh)
