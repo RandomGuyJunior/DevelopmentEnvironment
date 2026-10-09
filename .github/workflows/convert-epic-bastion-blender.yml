@@ -1,0 +1,30 @@
+name: Convert Existing Epic Bastion S3O to Blender
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/convert-epic-bastion-blender.yml"
+      - "tools/import_epic_bastion_blender.py"
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender and headless render dependencies
+        run: sudo apt-get update && sudo apt-get install -y blender python3-numpy libegl1 libgl1 libgl1-mesa-dri xvfb
+      - name: Convert current RandomGuy Hosting Epic Bastion
+        run: |
+          xvfb-run -a blender --background --python tools/import_epic_bastion_blender.py
+          test -s legbastiont3_original.blend
+          test -s legbastiont3_original.glb
+          test -s legbastiont3_original_preview.png
+          test -s legbastiont3_piece_report.txt
+      - name: Upload original Epic Bastion Blender reference
+        uses: actions/upload-artifact@v4
+        with:
+          name: epic-bastion-original-blender-reference
+          path: |
+            legbastiont3_original.blend
+            legbastiont3_original.glb
+            legbastiont3_original_preview.png
+            legbastiont3_piece_report.txt
