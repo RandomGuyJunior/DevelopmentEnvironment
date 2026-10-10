@@ -53,8 +53,8 @@ local deploying = false
 local firing = false
 local fireSerial = 0
 
-local RING_REST = -10
-local RING_RISE = 38
+local RING_REST = 0 -- New V11 mesh is authored directly in the docked pose
+local RING_RISE = 48 -- Preserve original 48-unit deployment travel
 local RING_RISE_SPEED = 44 -- twice the previous deployment speed
 
 local fireTimeFrames = 96
