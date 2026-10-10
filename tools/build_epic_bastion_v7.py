@@ -22,6 +22,21 @@ def bounds(o):
 coords=[p for o in goldparts for p in bounds(o)]
 zmin=min(p.z for p in coords); zmax=max(p.z for p in coords)
 rmax=max(math.hypot(p.x,p.y) for p in coords)
+# The final two posts were embedded in the original 'turret' mesh itself.
+# Cut that mesh at the bottom of the resting ring set; preserve the bottom
+# turret structure and every child / animation pivot.
+import bmesh
+turret=bpy.data.objects.get("turret")
+if turret and turret.type=="MESH":
+    bm=bmesh.new();bm.from_mesh(turret.data)
+    # World horizontal plane, transformed into the turret's own coordinates.
+    inv=turret.matrix_world.inverted()
+    point=inv @ Vector((0,0,zmin-0.65))
+    normal=(turret.matrix_world.to_3x3().transposed() @ Vector((0,0,1))).normalized()
+    bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),
+        plane_co=point,plane_no=normal,dist=.0001,clear_outer=True,clear_inner=False)
+    bm.to_mesh(turret.data);bm.free();turret.data.update()
+    print("Trimmed obsolete upward turret posts")
 # Real geometry dimensions drive cradle footprint. The docking ring is just beneath
 # the minimum Z of the resting rings; nothing projects above them.
 z=zmin-1.7
