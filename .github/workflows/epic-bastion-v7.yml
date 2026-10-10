@@ -1,0 +1,44 @@
+name: Epic Bastion V7 Cradle and Popup Defense Reference
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/epic-bastion-v7.yml"
+      - "tools/build_epic_bastion_v7.py"
+      - "tools/import_legapopupdef_blender.py"
+jobs:
+  models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender
+        run: sudo apt-get update && sudo apt-get install -y blender python3-numpy libegl1 libgl1 libgl1-mesa-dri xvfb
+      - name: Import Epic Bastion and source orientation
+        run: |
+          xvfb-run -a blender --background --python tools/import_epic_bastion_blender.py
+          xvfb-run -a blender --background --python tools/pose_epic_bastion_blender.py
+          xvfb-run -a blender --background --python tools/build_epic_bastion_legion_armor.py
+          xvfb-run -a blender --background --python tools/build_epic_bastion_v5.py
+      - name: Remove clipping plates and create completely open cradle
+        run: xvfb-run -a blender --background --python tools/build_epic_bastion_v7.py
+      - name: Import Legion popup-defense cannon source
+        run: xvfb-run -a blender --background --python tools/import_legapopupdef_blender.py
+      - name: Verify outputs
+        run: |
+          test -s epic_bastion_v7_true_open_cradle.blend
+          test -s epic_bastion_v7_true_open_cradle.glb
+          test -s epic_bastion_v7_true_open_cradle.png
+          test -s legapopupdef_original.blend
+          test -s legapopupdef_original.glb
+          test -s legapopupdef_original_preview.png
+          test -s legapopupdef_piece_report.txt
+      - name: Upload both Blender models and renders
+        uses: actions/upload-artifact@v4
+        with:
+          name: epic-bastion-v7-and-legapopupdef-reference
+          path: |
+            epic_bastion_v7_true_open_cradle.*
+            legapopupdef_original.blend
+            legapopupdef_original.glb
+            legapopupdef_original_preview.png
+            legapopupdef_piece_report.txt
