@@ -1,0 +1,2 @@
+-- Closed structural export only; individual limb/render/native acceptance pending.
+return{status='AUTHORED_STATIC_SCOUT_VERIFIED',actor='imp_scout',feature='40k_scout_corpse',authoredStatic=true,sourceOwnedStandalone=false,sourceDeathClipAvailable=false,donor=false,initialScoutAction='bolter_idle_1',heightBoundVerified=true,poseRecipeSHA256='05de98bf4bdc63ee3099801313e19b6073e869b0f933f5710abcbfcf4c671c90',staticUnskinned=true,groundContactVerified=true,materialsMatchLive=true,nativeAccepted=false,renderAccepted=false,classification='AUTHORED_STATIC_SCOUT_POSE'}

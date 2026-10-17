@@ -1,0 +1,22 @@
+-- Genuine heavy armour selected from ard_boyz.whm; native HP and damage only.
+return VFS.Include('40k_configs/ork_infantry_product.lua').New({
+ actor='ork_ard_boy',feature='40k_ard_boy_corpse',id=21,capacity=8,tier=2,
+ sourceWHMSHA256='f351cb7e96f3776c1ace619d068b477211d2ef2f39218932ec345bfd1bdb0b78',
+ entity='attrib/ebps/races/orks/troops/ork_ard_boy.lua',
+ muzzle='marker_boyz_slugga_barrel',meleeMuzzle='bip01 r hand',
+ cost={20,100,240},health=220,name="'Ard Boy",description='Armoured T2 slugga and choppa infantry',
+ mobName="'Ard Boyz Mob",shortRole='Armoured slugga and choppa mob',
+ mobDescription='8 armoured Orks per paid Expanded Da Boyz Hut order. Builders heal survivors and restore casualties for resources.',
+weapondefs={slugga={name="'Ard Boy Slugga",weapontype='Cannon',range=250,reloadtime=1.2,
+   weaponvelocity=480,turret=true,tolerance=4000,areaofeffect=1,cratermult=0,impulsefactor=0,
+   avoidfriendly=true,avoidfeature=true,collidefriendly=true,collideenemy=true,collideground=true,
+   collidefeature=true,collideneutral=true,collidenontarget=true,damage={default=6},
+   size=.25,stages=2,rgbcolor='1 .8 .3',explosiongenerator='custom:40k_shoota_impact',
+   soundstart='40k_shoota',soundstartvolume=.7,
+   customparams={source_muzzle='marker_boyz_slugga_barrel',source_fireclip='fire',source_wholebodyaim=1,source_fx_family='shoota'}},
+   choppa={name="'Ard Boy Choppa",weapontype='Melee',range=48,reloadtime=1.6,
+    weaponvelocity=1,turret=true,tolerance=4000,areaofeffect=1,cratermult=0,impulsefactor=0,
+    avoidfriendly=true,avoidfeature=true,collidefriendly=true,collideenemy=true,collideground=true,
+    collidefeature=true,collideneutral=true,collidenontarget=true,damage={default=22},
+    customparams={source_muzzle='bip01 r hand',source_fireclip='melee',source_wholebodyaim=1}}},
+  weapons={{def='slugga',onlytargetcategory='SURFACE'},{def='choppa',onlytargetcategory='SURFACE'}}})

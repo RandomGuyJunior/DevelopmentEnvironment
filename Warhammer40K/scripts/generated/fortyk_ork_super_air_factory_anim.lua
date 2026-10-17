@@ -1,0 +1,1 @@
+return {["bones"]={"root"},["muzzle"]="nano",["muzzles"]={"nano"},["clips"]={["idle"]={["source"]="authored_static_completed_AIR3",["source_fps"]=1,["duration"]=1,["active_bones"]={},["frames"]={{{0,0,0,0,0,0}}}}}}

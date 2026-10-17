@@ -11,6 +11,16 @@
       "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
       "enabled": true,
       "source_dir": "NavalAfus"
+    },
+    {
+      "id": "warhammer-40k",
+      "name": "Warhammer 40K BAR",
+      "description": "Four-faction Warhammer 40K conversion alpha. Public-host validation pending.",
+      "rapid_tag": "dev-mods:warhammer-40k",
+      "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
+      "source_dir": "Warhammer40K",
+      "enabled": true,
+      "version": "0.3.0-rgj-alpha.6"
     }
   ]
 }

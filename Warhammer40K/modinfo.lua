@@ -1,0 +1,1 @@
+return {name="Warhammer 40K BAR",shortName="WH40K",game="Warhammer 40K BAR",shortGame="WH40K",version="0.3.0-rgj-alpha.6",description="Four-faction 40K alpha; release acceptance recorded separately",modtype=1,depend={"rapid://randomguy-hosting:test"}}

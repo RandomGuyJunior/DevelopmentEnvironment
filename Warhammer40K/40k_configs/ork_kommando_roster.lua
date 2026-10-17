@@ -1,0 +1,21 @@
+-- Native stock per-body cloak, real pistol/choppa and normal squad ownership.
+return VFS.Include('40k_configs/ork_infantry_product.lua').New({
+ actor='ork_kommando',feature='40k_kommando_corpse',id=23,capacity=4,tier=3,
+ sourceWHMSHA256='231d7fa39985010ffe57e1a05b68645beaa35e8f132a81f62e324404f686b30c',
+ entity='attrib/ebps/races/orks/troops/ork_kommando.lua',muzzle='marker_slugga_muzzle',meleeMuzzle='marker_choppa_blade',
+ cost={30,150,360},health=190,sight=450,name='Kommando',description='T3 ambush infantry with slugga, choppa and optional native cloak',
+ mobName='Kommando Mob',shortRole='Cloaking ambush mob',
+ mobDescription='4 real Kommandos per paid Warcamp order. Optional cloak costs 4 energy/sec per idle Ork or 8 while moving; enemies within 80 elmos reveal them. Builders restore casualties for resources.',
+ extra={cancloak=true,cloakcost=4,cloakcostmoving=8,mincloakdistance=80,initcloaked=false},
+ weapondefs={slugga={name='Kommando Slugga',weapontype='Cannon',range=260,reloadtime=.9,
+  weaponvelocity=520,turret=true,tolerance=4000,accuracy=150,areaofeffect=1,cratermult=0,impulsefactor=0,
+  avoidfriendly=true,avoidfeature=true,collidefriendly=true,collideenemy=true,collideground=true,
+  collidefeature=true,collideneutral=true,collidenontarget=true,damage={default=8},
+  size=.25,stages=2,rgbcolor='1 .8 .3',explosiongenerator='custom:40k_shoota_impact',soundstart='40k_shoota',soundstartvolume=.7,
+  customparams={source_muzzle='marker_slugga_muzzle',source_fireclip='fire',source_wholebodyaim=1,source_fx_family='shoota'}},
+  choppa={name='Kommando Choppa',weapontype='Melee',range=48,reloadtime=1.5,
+   weaponvelocity=1,turret=true,tolerance=4000,areaofeffect=1,cratermult=0,impulsefactor=0,
+   avoidfriendly=true,avoidfeature=true,collidefriendly=true,collideenemy=true,collideground=true,
+   collidefeature=true,collideneutral=true,collidenontarget=true,damage={default=26},
+   customparams={source_muzzle='marker_choppa_blade',source_fireclip='melee',source_wholebodyaim=1}}},
+ weapons={{def='slugga',onlytargetcategory='SURFACE'},{def='choppa',onlytargetcategory='SURFACE'}}})

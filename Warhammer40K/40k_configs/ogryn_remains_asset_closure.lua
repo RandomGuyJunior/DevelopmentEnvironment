@@ -1,0 +1,2 @@
+-- Closed genuine terminal181 structural export; render/native acceptance pending.
+return{status='STATIC_SOURCE_DEATH_VERIFIED',actor='imp_ogryn',feature='40k_ogryn_corpse',sourceOwnedStandalone=true,donor=false,clip='die_normal_1',terminalFrame=181,recipeSHA256='b1206cb5d10569686ec40d7160a745d95fe0a0bce38e6320dcc9878b04e28300',staticUnskinned=true,groundContactVerified=true,heightBoundVerified=true,materialsMatchLive=true,classification='GENUINE_OGRYN_SOURCE_DEATH',nativeAccepted=false,renderAccepted=false}

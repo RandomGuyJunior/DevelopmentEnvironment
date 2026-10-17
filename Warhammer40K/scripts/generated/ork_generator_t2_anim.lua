@@ -1,0 +1,1 @@
+return {["bones"]={"root"},["root_bone"]="root",["muzzle"]="root",["muzzles"]={"root"},["walkspeed"]=0,["clips"]={["idle"]={["source"]="baked_two_genuine_idle_house_poses",["source_fps"]=30,["duration"]=0.03333333333333333,["frames"]={{{0,0,0,0,0,0}}},["keyed_channels"]={{["position"]=false,["rotation"]=false}},["active_bones"]={}}}}

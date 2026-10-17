@@ -1,0 +1,1 @@
+return {["bones"]={"bip02"},["muzzle"]="bip02",["muzzles"]={"bip02"},["clips"]={},["walkspeed"]=24.7275}
