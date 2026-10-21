@@ -1,1 +1,13 @@
-return {name="Warhammer 40K BAR",shortName="WH40K",game="Warhammer 40K BAR",shortGame="WH40K",version="0.3.0-rgj-alpha.7",description="Four-faction 40K alpha; release acceptance recorded separately",modtype=1,depend={"rapid://randomguy-hosting:test"}}
+return {
+    ["depend"] = {
+        [1] = "rapid://randomguy-hosting:test",
+    },
+    ["description"] = "Orks alpha rebuild with native BAR comparison roster",
+    ["game"] = "Warhammer 40K BAR",
+    ["modtype"] = 1,
+    ["mutator"] = "BAR 40K Orks",
+    ["name"] = "Warhammer 40K BAR",
+    ["shortGame"] = "BYAR",
+    ["shortname"] = "WH40K",
+    ["version"] = "0.23.0-rgj-alpha.8",
+}

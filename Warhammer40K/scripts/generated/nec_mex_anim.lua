@@ -1,1 +1,0 @@
-return {["bones"]={"nec_listening_post","mrkr_addon_cntr_01"},["muzzle"]="mrkr_addon_cntr_01",["muzzles"]={"mrkr_addon_cntr_01"},["clips"]={},["walkspeed"]=24.7275}

@@ -1,2 +1,0 @@
--- Closed genuine terminal64 structural export; render/native acceptance pending.
-return{status='STATIC_SOURCE_DEATH_VERIFIED',actor='ork_slugga',feature='40k_slugga_corpse',sourceOwnedStandalone=true,donor=false,clip='die_1',terminalFrame=64,recipeSHA256='161731eccb240b60790ff89ff5a893b4dda5f7df5569922e417f739da5a65c85',staticUnskinned=true,groundContactVerified=true,heightBoundVerified=true,materialsMatchLive=true,classification='GENUINE_SLUGGA_SOURCE_DEATH',nativeAccepted=false,renderAccepted=false}

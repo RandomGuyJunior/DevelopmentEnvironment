@@ -1,2 +1,0 @@
--- Closed genuine terminal64 structural export; render/native acceptance pending.
-return{status='STATIC_SOURCE_DEATH_VERIFIED',actor='ork_burna',feature='40k_burna_corpse',sourceOwnedStandalone=true,donor=false,clip='boyz_burna_die_1',terminalFrame=64,recipeSHA256='86e84909a7125ce515249b20e827b6e496062429d0e5982d4244c88cff325485',staticUnskinned=true,groundContactVerified=true,heightBoundVerified=true,materialsMatchLive=true,classification='GENUINE_BURNA_SOURCE_DEATH',nativeAccepted=false,renderAccepted=false}

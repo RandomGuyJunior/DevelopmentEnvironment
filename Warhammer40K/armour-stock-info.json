@@ -1,8 +1,0 @@
-{
-  "status": "EXACT_STOCK_INFO_NO_CUSTOM_RATINGS",
-  "file": "luaui/widgets/gui_info.lua",
-  "source_sha256": "4911b92511298ead0f4cbae4f21e7870ec301113f784ab58ec53174e0343796f",
-  "output_sha256": "4911b92511298ead0f4cbae4f21e7870ec301113f784ab58ec53174e0343796f",
-  "authored_changes": 0,
-  "exact_reversal": true
-}

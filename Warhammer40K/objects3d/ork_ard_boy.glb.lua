@@ -1,1 +1,6 @@
-return {["fliptextures"]=true,["invertteamcolor"]=false,["tex1"]="ork_ard_boy_tex1.png",["tex2"]="ork_ard_boy_tex2.png"}
+return {
+    ["fliptextures"] = false,
+    ["invertteamcolor"] = false,
+    ["tex1"] = "bar40k_orks_shared_tex1.dds",
+    ["tex2"] = "bar40k_orks_shared_tex2.dds",
+}

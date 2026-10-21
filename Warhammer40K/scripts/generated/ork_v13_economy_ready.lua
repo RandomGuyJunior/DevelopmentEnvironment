@@ -1,1 +1,0 @@
-return {ork_generator_t2=VFS.Include('scripts/generated/ork_generator_t2_facts.lua'),ork_generator_t3=VFS.Include('scripts/generated/ork_generator_t3_facts.lua'),ork_geothermal=VFS.Include('scripts/generated/ork_geothermal_facts.lua')}

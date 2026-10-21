@@ -1,7 +1,0 @@
-{
-  "status": "SOURCE_ADAPTER_NATIVE_PENDING",
-  "source_sha256": "4f89222ad55e8655d70da7e5b9755eefd84b6330920bfd36832a6ccc4d196675",
-  "output_sha256": "5cc1ec1130bc3945bb4229229eb2973b93064b36543f68c08e1fc88938ab0407",
-  "authored_changes": 7,
-  "exact_reversal": true
-}

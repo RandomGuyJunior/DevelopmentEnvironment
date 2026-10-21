@@ -15,12 +15,12 @@
     {
       "id": "warhammer-40k",
       "name": "Warhammer 40K BAR",
-      "description": "Four additional Warhammer 40K factions. Public-host validation pending.",
+      "description": "Orks alpha rebuild with infantry, vehicles, aircraft and native BAR comparison units.",
       "rapid_tag": "dev-mods:warhammer-40k",
       "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
       "source_dir": "Warhammer40K",
       "enabled": true,
-      "version": "0.3.0-rgj-alpha.7"
+      "version": "0.23.0-rgj-alpha.8"
     }
   ]
 }

@@ -17,3 +17,7 @@ of third-party redistribution licences. No blanket open-source or asset licence
 is granted by this file. Unresolved rights evidence must remain disclosed during
 submission review. Unused assets, editable source models, settings and recoveries
 are not intended release content.
+
+## Current Orks rebuild
+
+Runtime artwork/animations include Dawn of War / Ultimate Apocalypse, Sanctus Reach and Dakka Squadron. The approved Gunship includes project-authored modifications. Signed-depth model derivatives retain source provenance in the development asset library. Native comparison definitions and assets derive from Beyond All Reason; existing file notices remain. The owner has authorised distribution of the imported runtime assets and music. This statement does not assert independent third-party licence clearance. Editable sources, unused libraries and private source paths are excluded.
