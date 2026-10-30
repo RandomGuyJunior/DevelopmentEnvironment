@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armantiship"] = {
+    ["orkantiship"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16384,
         ["builder"] = true,

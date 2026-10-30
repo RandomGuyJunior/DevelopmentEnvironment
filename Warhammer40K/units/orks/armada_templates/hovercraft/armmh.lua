@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armmh"] = {
+    ["orkmh"] = {
         ["buildpic"] = "bar40k/orks/armada_templates/armmh.dds",
         ["buildtime"] = 3300,
         ["canmove"] = true,

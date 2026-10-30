@@ -1,0 +1,1 @@
+return {["tex1"]="bar40k_knights_tex1.dds",["tex2"]="bar40k_knights_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["mins"]={-101.647329,0,-29.6621857},["maxs"]={7.09683671,86.1891081,43.9555835},["midpos"]={-47.2752462,43.094554,7.1466989},["height"]=86.1891081,["radius"]=58.5814207}

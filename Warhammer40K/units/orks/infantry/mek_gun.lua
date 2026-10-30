@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_mek_gun"] = {
+    ["orkmekgunsingle"] = {
         ["buildpic"] = "bar40k_sanctus_mek_gun.png",
         ["buildtime"] = 12000,
         ["canmove"] = true,
@@ -114,7 +114,31 @@ return {
         ["upright"] = true,
         ["usepiececollisionvolumes"] = true,
         ["weapondefs"] = {
+            ["bar40k_chassis_heading"] = {
+                ["areaofeffect"] = 0,
+                ["avoidfeature"] = false,
+                ["avoidfriendly"] = false,
+                ["customparams"] = {
+                    ["bar40k_never_fires"] = true,
+                    ["bogus"] = 1,
+                    ["norangering"] = 1,
+                },
+                ["damage"] = {
+                    ["default"] = 0,
+                },
+                ["hightrajectory"] = 0,
+                ["mygravity"] = 0.276,
+                ["name"] = "Chassis heading reference",
+                ["noselfdamage"] = true,
+                ["range"] = 700,
+                ["reloadtime"] = 1,
+                ["tolerance"] = 1,
+                ["turret"] = false,
+                ["weapontype"] = "Cannon",
+                ["weaponvelocity"] = 450,
+            },
             ["primary"] = {
+                ["accuracy"] = 63.657,
                 ["areaofeffect"] = 300,
                 ["avoidfeature"] = false,
                 ["cegtag"] = "bar40k-mork-main-trail",
@@ -133,9 +157,11 @@ return {
                 ["hightrajectory"] = 0,
                 ["impulsefactor"] = 0.9,
                 ["minrange"] = 0,
+                ["movingaccuracy"] = 106.096,
                 ["mygravity"] = 0.276,
                 ["name"] = "Indirect mega-kannon",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 700,
                 ["reloadtime"] = 7,
                 ["rgbcolor"] = "0.12 0.4 1",
@@ -143,6 +169,7 @@ return {
                 ["soundhit"] = "bertha6",
                 ["soundhitwet"] = "splslrg",
                 ["soundstart"] = "BERTHA1",
+                ["sprayangle"] = 190.976,
                 ["turret"] = true,
                 ["weapontype"] = "Cannon",
                 ["weaponvelocity"] = 450,
@@ -150,6 +177,12 @@ return {
         },
         ["weapons"] = {
             [1] = {
+                ["def"] = "BAR40K_CHASSIS_HEADING",
+                ["maindir"] = "0 0 1",
+                ["maxangledif"] = 0.01,
+                ["onlytargetcategory"] = "SURFACE",
+            },
+            [2] = {
                 ["badtargetcategory"] = "VTOL",
                 ["def"] = "PRIMARY",
                 ["maindir"] = "0 0 1",

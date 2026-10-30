@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armmart"] = {
+    ["orkmart"] = {
         ["buildpic"] = "bar40k/orks/armada_templates/armmart.dds",
         ["buildtime"] = 8500,
         ["canmove"] = true,

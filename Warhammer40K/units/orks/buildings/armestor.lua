@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armestor"] = {
+    ["orkestor"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 4096,
         ["buildoptions"] = {},

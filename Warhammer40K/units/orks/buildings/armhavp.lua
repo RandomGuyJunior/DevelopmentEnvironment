@@ -1,16 +1,13 @@
 return {
-    ["bar40k_ork_armhavp"] = {
+    ["orkhavp"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armhacv",
-            [2] = "bar40k_ork_armbull",
-            [3] = "bar40k_ork_armmerl",
-            [4] = "bar40k_ork_armmanni",
-            [5] = "bar40k_ork_armyork",
-            [6] = "bar40k_ork_armjam",
-            [7] = "bar40k_ork_armgremlin",
-            [8] = "bar40k_ork_armlun",
-            [9] = "bar40k_ork_armlatnk",
+            [1] = "orkmerl",
+            [2] = "orkyork",
+            [3] = "orkjam",
+            [4] = "orkgremlin",
+            [5] = "orkkillbursta",
+            [6] = "orklatnk",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armhavp.dds",
         ["buildtime"] = 85000,
@@ -27,6 +24,8 @@ return {
             ["buildinggrounddecalsizey"] = 19,
             ["buildinggrounddecaltype"] = "bar40k/orks/armada_templates/decals/armamsub_aoplane.dds",
             ["faction"] = "Orks",
+            ["i18n_en_humanname"] = "Experimental Vehicle Plant",
+            ["i18n_en_tooltip"] = "Produces Experimental Vehicles",
             ["model_author"] = "Cremuss",
             ["normaltex"] = "unittextures/bar40k/orks/armada_templates/arm_normal.dds",
             ["subfolder"] = "bar40k/orks/landfactories",

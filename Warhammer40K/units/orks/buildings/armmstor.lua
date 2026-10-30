@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armmstor"] = {
+    ["orkmstor"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 4096,
         ["buildoptions"] = {},

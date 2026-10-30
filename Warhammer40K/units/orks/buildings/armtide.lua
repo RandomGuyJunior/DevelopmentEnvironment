@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armtide"] = {
+    ["orktide"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armwin"] = {
+    ["orkwin"] = {
         ["activatewhenbuilt"] = true,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armwin.dds",

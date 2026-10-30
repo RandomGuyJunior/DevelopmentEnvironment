@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armbats"] = {
+    ["orkbats"] = {
         ["buildangle"] = 16384,
         ["buildpic"] = "bar40k/orks/armada_templates/armbats.dds",
         ["buildtime"] = 50000,

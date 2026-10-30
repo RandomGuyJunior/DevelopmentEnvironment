@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armseap"] = {
+    ["orkseap"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armseap.dds",
         ["buildtime"] = 15000,

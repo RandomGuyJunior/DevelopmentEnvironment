@@ -28,6 +28,11 @@ return function(data)
   if w.pitchPiece then local a=Spring.UnitScript.GetPieceRotation(w.pitchPiece);if math.abs(delta(a,-w.pitch+math.rad(cfg.pitchOffset or 0)))>math.rad(2)then return true end end
   return false
  end
+ -- Advance desired axes at fixed speed; never distance/dt to the target.
+ local function advanceAngle(current,target,limit)
+  local d=delta(current,target)
+  return current+math.max(-limit,math.min(limit,d))
+ end
  local function animate()
   while true do
    local frame=Spring.GetGameFrame();local elapsed=math.max(0,frame-lastFrame)*dt;lastFrame=frame
@@ -55,8 +60,22 @@ return function(data)
       for _,name in ipairs(clip.active_bones or{})do local i=byname[name];if i then pose[i]=sample(clip,(frame-w.fireFrame)*dt,i)end end
      end
      if not cfg.poseOwner and not cfg.dummy then
-      if cfg.yaw then local i=byname[cfg.yaw];pose[i][5]=w.yaw end
-      if cfg.pitch then local i=byname[cfg.pitch];pose[i][4]=-w.pitch+math.rad(cfg.pitchOffset or 0)end
+      if cfg.yaw then
+       local i=byname[cfg.yaw];local target=w.yaw
+       if data.boundedTurretTraverse then
+        w.actualYaw=advanceAngle(w.actualYaw or pose[i][5],target,math.rad(cfg.yawSpeed or 60)*elapsed)
+        target=w.actualYaw
+       end
+       pose[i][5]=target
+      end
+      if cfg.pitch then
+       local i=byname[cfg.pitch];local target=-w.pitch+math.rad(cfg.pitchOffset or 0)
+       if data.boundedTurretTraverse then
+        w.actualPitch=advanceAngle(w.actualPitch or pose[i][4],target,math.rad(cfg.pitchSpeed or 45)*elapsed)
+        target=w.actualPitch
+       end
+       pose[i][4]=target
+      end
      end
     end
    end
@@ -67,7 +86,7 @@ return function(data)
      local k=axis+3;local value=old[k]and old[k]+delta(old[k],row[k])or row[k]
      if old[k]==nil or math.abs(value-old[k])>1e-5 then
       local speed=old[k]and math.abs(value-old[k])/dt or nil
-      for n,cfg in pairs(data.weaponMounts or{})do if(cfg.yaw==data.bones[i]and axis==2)or(cfg.pitch==data.bones[i]and axis==1)then speed=math.max(speed or 0,math.rad(180))end end
+      for n,cfg in pairs(data.weaponMounts or{})do if(cfg.yaw==data.bones[i]and axis==2)or(cfg.pitch==data.bones[i]and axis==1)then if not data.boundedTurretTraverse then speed=math.max(speed or 0,math.rad(180))end end end
       Turn(bone,axis,value,speed)
      end
      old[axis],old[k]=row[axis],value

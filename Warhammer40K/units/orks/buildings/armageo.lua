@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armageo"] = {
+    ["orkageo"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 0,
         ["buildoptions"] = {},

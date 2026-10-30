@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_grot_cannon"] = {
+    ["orkgrotcannonsingle"] = {
         ["buildpic"] = "40k_ork_lobba.png",
         ["buildtime"] = 2200,
         ["canmove"] = true,
@@ -105,6 +105,7 @@ return {
         ["upright"] = true,
         ["weapondefs"] = {
             ["arm_ham"] = {
+                ["accuracy"] = 50.098,
                 ["areaofeffect"] = 36,
                 ["avoidfeature"] = false,
                 ["craterareaofeffect"] = 0,
@@ -118,14 +119,17 @@ return {
                 ["explosiongenerator"] = "custom:genericshellexplosion-small",
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
+                ["movingaccuracy"] = 83.497,
                 ["name"] = "Light g2g plasma cannon (low trajectory)",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["predictboost"] = 0.4,
                 ["range"] = 475,
                 ["reloadtime"] = 1.73333,
                 ["soundhit"] = "xplomed3",
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "cannon1",
+                ["sprayangle"] = 150.296,
                 ["turret"] = true,
                 ["weapontype"] = "Cannon",
                 ["weaponvelocity"] = 286,

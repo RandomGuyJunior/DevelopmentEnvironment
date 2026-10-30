@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_burna_boy"] = {
+    ["orkburnasingle"] = {
         ["buildpic"] = "40k_ork_burna.png",
         ["buildtime"] = 6500,
         ["canmove"] = true,

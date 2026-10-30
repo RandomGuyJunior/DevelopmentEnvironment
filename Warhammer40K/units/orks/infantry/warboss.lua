@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_warboss"] = {
+    ["orkwarboss"] = {
         ["buildpic"] = "bar40k_dow_warboss.png",
         ["buildtime"] = 8000,
         ["canmove"] = true,

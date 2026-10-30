@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armclaw"] = {
+    ["orkclaw"] = {
         ["buildangle"] = 8192,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armclaw.dds",
@@ -12,7 +12,7 @@ return {
             ["buildinggrounddecalsizex"] = 4,
             ["buildinggrounddecalsizey"] = 4,
             ["buildinggrounddecaltype"] = "bar40k/orks/armada_templates/decals/armclaw_aoplane.dds",
-            ["decoyfor"] = "bar40k_ork_armdrag",
+            ["decoyfor"] = "orktrap",
             ["faction"] = "Orks",
             ["model_author"] = "Beherith",
             ["neutral_when_closed"] = true,
@@ -23,7 +23,7 @@ return {
             ["usebuildinggrounddecal"] = true,
         },
         ["damagemodifier"] = 0.33,
-        ["decoyfor"] = "bar40k_ork_armdrag",
+        ["decoyfor"] = "orktrap",
         ["description"] = "Pop-up Lightning Turret",
         ["energycost"] = 1600,
         ["explodeas"] = "smallBuildingexplosiongeneric",

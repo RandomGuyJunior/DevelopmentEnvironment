@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_ard_boy"] = {
+    ["orkardboysingle"] = {
         ["buildpic"] = "40k_ork_ard_boy.png",
         ["buildtime"] = 8000,
         ["canmove"] = true,
@@ -101,6 +101,7 @@ return {
         ["upright"] = true,
         ["weapondefs"] = {
             ["emg"] = {
+                ["accuracy"] = 307.34,
                 ["areaofeffect"] = 8,
                 ["avoidfeature"] = false,
                 ["burst"] = 3,
@@ -124,15 +125,17 @@ return {
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,
+                ["movingaccuracy"] = 512.304,
                 ["name"] = "Slow-firing small arms",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 280,
                 ["reloadtime"] = 0.9,
                 ["rgbcolor"] = "1 0.95 0.4",
                 ["size"] = 1.75,
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "flashemg",
-                ["sprayangle"] = 1180,
+                ["sprayangle"] = 922.587,
                 ["tolerance"] = 1820,
                 ["turret"] = false,
                 ["weapontimer"] = 0.1,

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armrl"] = {
+    ["orkrl"] = {
         ["airsightdistance"] = 700,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armrl.dds",

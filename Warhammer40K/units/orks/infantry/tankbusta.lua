@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_tankbusta"] = {
+    ["orktankbustasingle"] = {
         ["buildpic"] = "bar40k_dow_tankbusta.png",
         ["buildtime"] = 2010,
         ["canmove"] = true,
@@ -108,6 +108,7 @@ return {
         ["usepiececollisionvolumes"] = false,
         ["weapondefs"] = {
             ["arm_bot_rocket"] = {
+                ["accuracy"] = 181.16,
                 ["areaofeffect"] = 48,
                 ["avoidfeature"] = false,
                 ["castshadow"] = true,
@@ -128,8 +129,10 @@ return {
                 ["impulsefactor"] = 0.123,
                 ["metalpershot"] = 0,
                 ["model"] = "bar40k/orks/armada_templates/cormissile2.s3o",
+                ["movingaccuracy"] = 301.948,
                 ["name"] = "Medium g2g rocket launcher",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 475,
                 ["reloadtime"] = 3.8,
                 ["smokecolor"] = 1,
@@ -141,6 +144,7 @@ return {
                 ["soundhit"] = "xplosml2",
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "rocklit1",
+                ["sprayangle"] = 543.596,
                 ["startvelocity"] = 190,
                 ["texture1"] = "null",
                 ["texture2"] = "smoketraildark",

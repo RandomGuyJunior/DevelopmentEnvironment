@@ -1,13 +1,12 @@
 return {
-    ["bar40k_ork_armamsub"] = {
+    ["orkamsub"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armbeaver",
-            [2] = "bar40k_ork_armpincer",
-            [3] = "bar40k_ork_armcroc",
-            [4] = "bar40k_ork_armjeth",
-            [5] = "bar40k_ork_armaak",
-            [6] = "bar40k_ork_armdecom",
+            [1] = "orkbeaver",
+            [2] = "orkpincer",
+            [3] = "orkjeth",
+            [4] = "orkaak",
+            [5] = "orkdecom",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armamsub.dds",
         ["buildtime"] = 11100,
@@ -24,6 +23,8 @@ return {
             ["buildinggrounddecalsizey"] = 11,
             ["buildinggrounddecaltype"] = "bar40k/orks/armada_templates/decals/armamsub_aoplane.dds",
             ["faction"] = "Orks",
+            ["i18n_en_humanname"] = "Amphibious Complex",
+            ["i18n_en_tooltip"] = "Produces Amphibious / Underwater Units",
             ["model_author"] = "FireStorm",
             ["normaltex"] = "unittextures/bar40k/orks/armada_templates/arm_normal.dds",
             ["subfolder"] = "bar40k/orks/seafactories",

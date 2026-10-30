@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armhvytrans"] = {
+    ["orkhvytrans"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armhvytrans.dds",
         ["buildtime"] = 8500,

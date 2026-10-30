@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_shoota_boy"] = {
+    ["orkshootasingle"] = {
         ["buildpic"] = "40k_ork_boy.png",
         ["buildtime"] = 4200,
         ["canmove"] = true,
@@ -102,6 +102,7 @@ return {
         ["upright"] = true,
         ["weapondefs"] = {
             ["emg"] = {
+                ["accuracy"] = 286.848,
                 ["areaofeffect"] = 8,
                 ["avoidfeature"] = false,
                 ["burst"] = 3,
@@ -125,15 +126,17 @@ return {
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,
+                ["movingaccuracy"] = 478.137,
                 ["name"] = "Rapid-fire close-quarters g2g plasma guns",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 300,
                 ["reloadtime"] = 0.3,
                 ["rgbcolor"] = "1 0.95 0.4",
                 ["size"] = 1.75,
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "flashemg",
-                ["sprayangle"] = 1180,
+                ["sprayangle"] = 861.004,
                 ["tolerance"] = 1820,
                 ["turret"] = false,
                 ["weapontimer"] = 0.1,

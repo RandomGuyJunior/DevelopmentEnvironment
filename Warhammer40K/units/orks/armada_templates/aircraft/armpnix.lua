@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armpnix"] = {
+    ["orkpnix"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armpnix.dds",
         ["buildtime"] = 25000,

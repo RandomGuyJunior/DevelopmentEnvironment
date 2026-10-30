@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfmkr"] = {
+    ["orkfmkr"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},

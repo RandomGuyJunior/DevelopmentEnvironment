@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armnavaldefturret"] = {
+    ["orknavaldefturret"] = {
         ["airsightdistance"] = 650,
         ["buildangle"] = 32768,
         ["buildoptions"] = {},

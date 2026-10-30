@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfdrag"] = {
+    ["orkfdrag"] = {
         ["blocking"] = true,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},

@@ -253,7 +253,8 @@ function widget:DrawWorldPreParticles(drawAboveWater,drawBelowWater,drawReflecti
   if instance and instance.usedElements>0 and not blocked(asset)then
    shader:SetUniform('cutoff',asset.cfg.alphaCutoff or .1)
    shader:SetUniform('thickness',asset.cfg.depthThickness or .004)
-   gl.Texture(0,asset.cfg.texture);gl.Texture(1,asset.cfg.depthTexture);gl.Texture(2,asset.cfg.normalTexture)
+   -- All three samplers use explicit LOD0; avoid unused synchronous mip generation.
+   gl.Texture(0,":l:"..asset.cfg.texture);gl.Texture(1,":l:"..asset.cfg.depthTexture);gl.Texture(2,":l:"..asset.cfg.normalTexture)
    iv.drawInstanceVBO(instance)
   end
  end

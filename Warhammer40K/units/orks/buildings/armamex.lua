@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armamex"] = {
+    ["orkamex"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 6092,
         ["buildoptions"] = {},

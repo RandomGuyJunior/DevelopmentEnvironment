@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armanni"] = {
+    ["orkanni"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 4096,
         ["buildoptions"] = {},

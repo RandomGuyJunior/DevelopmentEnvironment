@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armflak"] = {
+    ["orkflak"] = {
         ["airsightdistance"] = 1000,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},

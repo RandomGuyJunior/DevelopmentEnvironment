@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armsfig"] = {
+    ["orksfig"] = {
         ["airsightdistance"] = 950,
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armsfig.dds",

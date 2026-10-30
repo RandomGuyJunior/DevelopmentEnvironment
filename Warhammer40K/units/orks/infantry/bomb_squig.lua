@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_bomb_squig"] = {
+    ["orksquig"] = {
         ["activatewhenbuilt"] = true,
         ["buildpic"] = "40k_ork_bomb_squig.png",
         ["buildtime"] = 8000,

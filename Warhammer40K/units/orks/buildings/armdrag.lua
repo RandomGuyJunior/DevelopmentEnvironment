@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armdrag"] = {
+    ["orktrap"] = {
         ["blocking"] = true,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k_dow_mek_trap.png",

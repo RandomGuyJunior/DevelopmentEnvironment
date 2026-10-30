@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armserp"] = {
+    ["orkserp"] = {
         ["activatewhenbuilt"] = true,
         ["buildpic"] = "bar40k/orks/armada_templates/armserp.dds",
         ["buildtime"] = 32000,

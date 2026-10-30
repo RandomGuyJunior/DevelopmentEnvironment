@@ -131,10 +131,13 @@ return function(data)
    end
    for i,bone in ipairs(bones)do
     local row,old=pose[i],previous[i]or{}
+    local actualMove,actualTurn
+    if data.aimActuatorActualCatchUp and aimBones[i]then actualMove={Spring.UnitScript.GetPieceTranslation(bone)};actualTurn={Spring.UnitScript.GetPieceRotation(bone)}end
     for axis=1,3 do
      local value=row[axis]
      if old[axis]==nil or math.abs(value-old[axis])>.00001 then
       local speed=old[axis]and math.abs(value-old[axis])/(dt*(data.frameInterval or 1))or nil
+      if actualMove then speed=math.abs(value-actualMove[axis])/dt end
       if speed and aimBones[i]and data.aimActuatorMinMoveSpeed then speed=math.max(speed,data.aimActuatorMinMoveSpeed)end
       Move(bone,axis,value,speed)
      end
@@ -144,6 +147,7 @@ return function(data)
       local speed=old[k]and math.abs(value-old[k])/(dt*(data.frameInterval or 1))or nil
       -- A tiny change between commanded goals does not mean the native piece
       -- has already reached the preceding goal. Keep enough speed to catch up.
+      if actualTurn then speed=math.abs(angleDelta(actualTurn[axis],value))/dt end
       if speed and aimBones[i]and data.aimActuatorMinTurnDegrees then speed=math.max(speed,math.rad(data.aimActuatorMinTurnDegrees))end
       Turn(bone,axis,value,speed)
      end;row[k]=value;old[k]=value

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armgate"] = {
+    ["orkgate"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 2048,
         ["buildoptions"] = {},

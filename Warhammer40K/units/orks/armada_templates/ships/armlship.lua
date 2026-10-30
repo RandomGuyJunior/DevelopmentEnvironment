@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armlship"] = {
+    ["orklship"] = {
         ["activatewhenbuilt"] = true,
         ["blocking"] = true,
         ["buildpic"] = "bar40k/orks/armada_templates/armlship.dds",

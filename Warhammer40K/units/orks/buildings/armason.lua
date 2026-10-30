@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armason"] = {
+    ["orkason"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},

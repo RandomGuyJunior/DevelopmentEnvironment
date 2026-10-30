@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armaas"] = {
+    ["orkaas"] = {
         ["airsightdistance"] = 900,
         ["buildangle"] = 16384,
         ["buildpic"] = "bar40k/orks/armada_templates/armaas.dds",

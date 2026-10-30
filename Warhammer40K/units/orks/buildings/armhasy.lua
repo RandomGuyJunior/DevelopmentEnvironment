@@ -1,16 +1,15 @@
 return {
-    ["bar40k_ork_armhasy"] = {
+    ["orkhasy"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armhacs",
-            [2] = "bar40k_ork_armserp",
-            [3] = "bar40k_ork_armbats",
-            [4] = "bar40k_ork_armepoch",
-            [5] = "bar40k_ork_armantiship",
-            [6] = "bar40k_ork_armlship",
-            [7] = "bar40k_ork_armlun",
-            [8] = "bar40k_ork_armaas",
-            [9] = "bar40k_ork_armmship",
+            [1] = "orkhacs",
+            [2] = "orkserp",
+            [3] = "orkbats",
+            [4] = "orkepoch",
+            [5] = "orkantiship",
+            [6] = "orklship",
+            [7] = "orkaas",
+            [8] = "orkmship",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armshltxuw.dds",
         ["buildtime"] = 85000,
@@ -23,6 +22,8 @@ return {
         ["customparams"] = {
             ["bar40k_template_source"] = "armhasy",
             ["faction"] = "Orks",
+            ["i18n_en_humanname"] = "Experimental Shipyard",
+            ["i18n_en_tooltip"] = "Produces Experimental Ships",
             ["model_author"] = "FireStorm",
             ["normaltex"] = "unittextures/bar40k/orks/armada_templates/arm_normal.dds",
             ["subfolder"] = "bar40k/orks/seafactories",

@@ -1,14 +1,14 @@
 return {
-    ["bar40k_ork_armplat"] = {
+    ["orkplat"] = {
         ["activatewhenbuilt"] = false,
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armcsa",
-            [2] = "bar40k_ork_armsaber",
-            [3] = "bar40k_ork_armsb",
-            [4] = "bar40k_ork_armseap",
-            [5] = "bar40k_ork_armsfig",
-            [6] = "bar40k_ork_armsehak",
+            [1] = "orkcsa",
+            [2] = "orksaber",
+            [3] = "orksb",
+            [4] = "orkseap",
+            [5] = "orksfig",
+            [6] = "orksehak",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armplat.dds",
         ["buildtime"] = 12000,

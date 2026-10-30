@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armblade"] = {
+    ["orkblade"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armblade.dds",
         ["buildtime"] = 32000,

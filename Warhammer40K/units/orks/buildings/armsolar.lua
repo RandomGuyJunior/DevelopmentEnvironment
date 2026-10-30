@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armsolar"] = {
+    ["orkgen"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 4000,
         ["buildoptions"] = {},
@@ -64,8 +64,8 @@ return {
                 ["resurrectable"] = 0,
             },
         },
-        ["footprintx"] = 5,
-        ["footprintz"] = 5,
+        ["footprintx"] = 3,
+        ["footprintz"] = 3,
         ["health"] = 340,
         ["maxacc"] = 0,
         ["maxdec"] = 0,
@@ -96,6 +96,6 @@ return {
             },
             ["underattack"] = "warning1",
         },
-        ["yardmap"] = "yyoyy yoooy ooooo yoooy yyoyy",
+        ["yardmap"] = "ooo ooo ooo",
     },
 }

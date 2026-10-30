@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armkraken"] = {
+    ["orkkraken"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16384,
         ["buildoptions"] = {},

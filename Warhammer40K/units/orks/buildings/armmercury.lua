@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armmercury"] = {
+    ["orkmercury"] = {
         ["activatewhenbuilt"] = true,
         ["airsightdistance"] = 2400,
         ["buildoptions"] = {},

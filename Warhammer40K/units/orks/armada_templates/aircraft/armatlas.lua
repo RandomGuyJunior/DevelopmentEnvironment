@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armatlas"] = {
+    ["orkatlas"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armatlas.dds",
         ["buildtime"] = 3850,

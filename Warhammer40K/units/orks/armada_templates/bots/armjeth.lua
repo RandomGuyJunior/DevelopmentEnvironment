@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armjeth"] = {
+    ["orkjeth"] = {
         ["airsightdistance"] = 800,
         ["buildpic"] = "bar40k/orks/armada_templates/armjeth.dds",
         ["buildtime"] = 1830,

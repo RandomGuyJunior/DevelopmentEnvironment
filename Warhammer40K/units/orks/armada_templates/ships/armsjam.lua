@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armsjam"] = {
+    ["orksjam"] = {
         ["activatewhenbuilt"] = true,
         ["buildpic"] = "bar40k/orks/armada_templates/armsjam.dds",
         ["buildtime"] = 20000,

@@ -1,0 +1,1 @@
+return {["tex1"]="bar40k_gladius_knights_tex1.dds",["tex2"]="bar40k_gladius_knights_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["mins"]={-42.0279397,3.20472815e-14,-51.1154701},["maxs"]={42.0276001,130.000001,51.1154697},["midpos"]={-0.000169816252,65.0000004,-1.84402097e-07},["height"]=130.000001,["radius"]=92.7584215}

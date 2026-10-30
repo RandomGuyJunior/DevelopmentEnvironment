@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfort"] = {
+    ["orkfort"] = {
         ["blocking"] = true,
         ["buildangle"] = 0,
         ["buildoptions"] = {},

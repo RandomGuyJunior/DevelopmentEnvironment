@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_looted_rhino"] = {
+    ["orkrhino"] = {
         ["buildpic"] = "bar40k_dow_looted_rhino.png",
         ["buildtime"] = 3400,
         ["canmove"] = true,
@@ -123,6 +123,7 @@ return {
         ["usepiececollisionvolumes"] = false,
         ["weapondefs"] = {
             ["primary"] = {
+                ["accuracy"] = 478.137,
                 ["areaofeffect"] = 8,
                 ["avoidfeature"] = false,
                 ["burst"] = 3,
@@ -145,15 +146,17 @@ return {
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,
+                ["movingaccuracy"] = 797.158,
                 ["name"] = "Rapid-fire close-quarters plasma gun",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 180,
                 ["reloadtime"] = 0.3,
                 ["rgbcolor"] = "1 0.95 0.4",
                 ["size"] = 1.9,
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "flashemg",
-                ["sprayangle"] = 1180,
+                ["sprayangle"] = 1436.546,
                 ["tolerance"] = 5000,
                 ["turret"] = true,
                 ["weapontimer"] = 0.1,

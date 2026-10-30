@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armuwadves"] = {
+    ["orkuwadves"] = {
         ["buildangle"] = 8192,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armuwadves.dds",

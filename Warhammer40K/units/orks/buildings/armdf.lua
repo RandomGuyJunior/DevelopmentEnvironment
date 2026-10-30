@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armdf"] = {
+    ["orkdf"] = {
         ["buildangle"] = 4096,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armdf.dds",
@@ -15,7 +15,7 @@ return {
             ["buildinggrounddecalsizex"] = 8,
             ["buildinggrounddecalsizey"] = 8,
             ["buildinggrounddecaltype"] = "bar40k/orks/armada_templates/decals/armfus_aoplane.dds",
-            ["decoyfor"] = "bar40k_ork_armfus",
+            ["decoyfor"] = "orkfus",
             ["faction"] = "Orks",
             ["model_author"] = "Cremuss",
             ["normaltex"] = "unittextures/bar40k/orks/armada_templates/arm_normal.dds",
@@ -27,7 +27,7 @@ return {
             ["unitgroup"] = "util",
             ["usebuildinggrounddecal"] = true,
         },
-        ["decoyfor"] = "bar40k_ork_armfus",
+        ["decoyfor"] = "orkfus",
         ["description"] = "Does not produce Energy, used to confuse the enemy",
         ["energycost"] = 100,
         ["explodeas"] = "mediumBuildingexplosiongeneric",

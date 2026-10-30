@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfrock"] = {
+    ["orkfrock"] = {
         ["activatewhenbuilt"] = true,
         ["airsightdistance"] = 750,
         ["buildangle"] = 16384,

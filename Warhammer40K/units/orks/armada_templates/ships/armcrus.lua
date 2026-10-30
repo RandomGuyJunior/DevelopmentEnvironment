@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armcrus"] = {
+    ["orkcrus"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16384,
         ["buildpic"] = "bar40k/orks/armada_templates/armcrus.dds",

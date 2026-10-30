@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armpt"] = {
+    ["orkpt"] = {
         ["activatewhenbuilt"] = true,
         ["airsightdistance"] = 800,
         ["buildpic"] = "bar40k/orks/armada_templates/armpt.dds",

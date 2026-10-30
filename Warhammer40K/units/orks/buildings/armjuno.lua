@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armjuno"] = {
+    ["orkjuno"] = {
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armjuno.dds",
         ["buildtime"] = 21800,

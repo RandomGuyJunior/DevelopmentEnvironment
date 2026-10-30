@@ -3,7 +3,7 @@ function widget:GetInfo()
   author='Local project',layer=-2,enabled=true,handler=true}
 end
 
-local gunship=UnitDefNames.bar40k_ork_gunship
+local gunship=UnitDefNames.orkgunship
 if not gunship then return false end
 local S=Spring
 local markers={'engine_exhaust_port','engine_exhaust_starboard'}
@@ -73,10 +73,10 @@ local function reconcile(id)
   -- Pinned native API uses zero-based SSBO piece IDs and multiplies size by5.
   -- Its quad extends local -Z; negative length follows our measured +Z outlet.
   -- Shader ignores emitVector. Culling is disabled by the stock renderer.
-  -- Width .6 =>18 world units, a slightly flared14.759-unit nozzle plume;
-  -- length -12 =>59.4 outward units. Two persistent stock quads only;
+  -- Width .3 =>9 world units, matching the uniformly halved nozzle;
+  -- length -6 =>29.7 outward units. Two persistent stock quads only;
   -- zero velocity scaling keeps their size unchanged when hovering.
-  row.keys[#row.keys+1]=api.addAirJet(id,pieces[name]-1,.6,-12,
+  row.keys[#row.keys+1]=api.addAirJet(id,pieces[name]-1,.3,-6,
    {.1,.4,.6},{0,0,1},0,0,0)
  end
  attached[id]=row

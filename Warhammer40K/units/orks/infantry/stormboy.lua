@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_stormboy"] = {
+    ["orkstormboysingle"] = {
         ["buildpic"] = "40k_ork_stormboy.png",
         ["buildtime"] = 5000,
         ["canmove"] = true,
@@ -102,6 +102,7 @@ return {
         ["upright"] = true,
         ["weapondefs"] = {
             ["emg"] = {
+                ["accuracy"] = 374.167,
                 ["areaofeffect"] = 8,
                 ["avoidfeature"] = false,
                 ["burst"] = 3,
@@ -125,15 +126,17 @@ return {
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,
+                ["movingaccuracy"] = 623.738,
                 ["name"] = "Slow-firing small arms",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 230,
                 ["reloadtime"] = 0.9,
                 ["rgbcolor"] = "1 0.95 0.4",
                 ["size"] = 1.75,
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "flashemg",
-                ["sprayangle"] = 1180,
+                ["sprayangle"] = 1123.523,
                 ["tolerance"] = 1820,
                 ["turret"] = false,
                 ["weapontimer"] = 0.1,

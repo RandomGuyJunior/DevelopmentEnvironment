@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfgate"] = {
+    ["orkfgate"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 2048,
         ["builder"] = 0,
@@ -103,7 +103,7 @@ return {
         ["turninplaceanglelimit"] = 140,
         ["turninplacespeedlimit"] = 0,
         ["turnrate"] = 0,
-        ["unitname"] = "bar40k_ork_armfgate",
+        ["unitname"] = "orkfgate",
         ["waterline"] = 0,
         ["weapondefs"] = {
             ["sea_repulsor"] = {

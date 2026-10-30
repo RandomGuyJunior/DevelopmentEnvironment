@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armsub"] = {
+    ["orksub"] = {
         ["activatewhenbuilt"] = true,
         ["buildpic"] = "bar40k/orks/armada_templates/armsub.dds",
         ["buildtime"] = 5800,

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armcir"] = {
+    ["orkcir"] = {
         ["airsightdistance"] = 1200,
         ["buildangle"] = 65536,
         ["buildoptions"] = {},

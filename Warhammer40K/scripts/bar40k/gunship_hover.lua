@@ -1,8 +1,8 @@
 -- Small, ordinary LUS root animation. Native aircraft physics, unit orders,
 -- targeting and damage remain unchanged. Every visible part, actual aim/muzzle
 -- piece and exhaust marker is a descendant of this identity-bind root.
-local M={Version=2,amplitude=1.5,period=6,sampleSeconds=.1,entranceSeconds=1.5,
- maxAnimationSpeed=3.2,returnSpeed=1.5,signal=2^27,
+local M={Version=2,amplitude=.75,period=6,sampleSeconds=.1,entranceSeconds=1.5,
+ maxAnimationSpeed=1.6,returnSpeed=.75,signal=2^27,
  entrySpeed=.2,exitSpeed=.35,settleSeconds=.3}
 local S=Spring
 local US=assert(S.UnitScript,'Native unit-script animation API required')

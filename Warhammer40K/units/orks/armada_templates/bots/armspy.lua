@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armspy"] = {
+    ["orkspy"] = {
         ["activatewhenbuilt"] = true,
         ["builddistance"] = 136,
         ["builder"] = true,

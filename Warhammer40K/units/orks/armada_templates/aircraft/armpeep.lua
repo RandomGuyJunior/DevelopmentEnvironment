@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armpeep"] = {
+    ["orkpeep"] = {
         ["blocking"] = false,
         ["buildpic"] = "bar40k/orks/armada_templates/armpeep.dds",
         ["buildtime"] = 2800,

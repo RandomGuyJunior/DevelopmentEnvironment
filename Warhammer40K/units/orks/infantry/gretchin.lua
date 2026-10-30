@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_gretchin"] = {
+    ["orkgretchinsingle"] = {
         ["buildpic"] = "40k_ork_gretchin_combat.png",
         ["buildtime"] = 1650,
         ["canmove"] = true,
@@ -105,6 +105,7 @@ return {
         ["upright"] = true,
         ["weapondefs"] = {
             ["emg"] = {
+                ["accuracy"] = 478.137,
                 ["areaofeffect"] = 8,
                 ["avoidfeature"] = false,
                 ["burst"] = 3,
@@ -128,15 +129,17 @@ return {
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,
+                ["movingaccuracy"] = 797.158,
                 ["name"] = "Slow-firing small arms",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 180,
                 ["reloadtime"] = 0.9,
                 ["rgbcolor"] = "1 0.95 0.4",
                 ["size"] = 1.75,
                 ["soundhitwet"] = "splshbig",
                 ["soundstart"] = "flashemg",
-                ["sprayangle"] = 1180,
+                ["sprayangle"] = 1436.546,
                 ["tolerance"] = 1820,
                 ["turret"] = false,
                 ["weapontimer"] = 0.1,

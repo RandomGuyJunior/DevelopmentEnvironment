@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armgplat"] = {
+    ["orkgplat"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16384,
         ["buildoptions"] = {},

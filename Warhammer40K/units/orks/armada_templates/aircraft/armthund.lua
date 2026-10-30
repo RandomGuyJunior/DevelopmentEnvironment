@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armthund"] = {
+    ["orkthund"] = {
         ["buildpic"] = "bar40k/orks/armada_templates/armthund.dds",
         ["buildtime"] = 5000,
         ["canfly"] = true,

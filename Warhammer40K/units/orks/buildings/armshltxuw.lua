@@ -1,11 +1,8 @@
 return {
-    ["bar40k_ork_armshltxuw"] = {
+    ["orkshltxuw"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armbanth",
-            [2] = "bar40k_ork_armmar",
-            [3] = "bar40k_ork_armcroc",
-            [4] = "bar40k_ork_armlun",
+            [1] = "orkmork",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armshltxuw.dds",
         ["buildtime"] = 62000,
@@ -22,6 +19,8 @@ return {
             ["buildinggrounddecalsizey"] = 10,
             ["buildinggrounddecaltype"] = "bar40k/orks/armada_templates/decals/armshltx_aoplane.dds",
             ["faction"] = "Orks",
+            ["i18n_en_humanname"] = "Experimental Gantry",
+            ["i18n_en_tooltip"] = "Produces Large Amphibious Units",
             ["model_author"] = "Cremuss",
             ["normaltex"] = "unittextures/bar40k/orks/armada_templates/arm_normal.dds",
             ["subfolder"] = "bar40k/orks/seafactories",

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armshockwave"] = {
+    ["orkshockwave"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 32768,
         ["buildoptions"] = {},

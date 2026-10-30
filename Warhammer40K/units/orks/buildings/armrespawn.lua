@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armrespawn"] = {
+    ["orkrespawn"] = {
         ["builder"] = true,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armnanotcplat.dds",

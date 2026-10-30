@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armnanotct2"] = {
+    ["orknanotct2"] = {
         ["builddistance"] = 500,
         ["builder"] = true,
         ["buildoptions"] = {},

@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armrecl"] = {
+    ["orkrecl"] = {
         ["activatewhenbuilt"] = true,
         ["autoheal"] = 5,
         ["builddistance"] = 140,

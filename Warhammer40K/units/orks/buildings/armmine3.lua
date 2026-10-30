@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armmine3"] = {
+    ["orkmine3"] = {
         ["blocking"] = false,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armmine3.dds",

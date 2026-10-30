@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armroy"] = {
+    ["orkroy"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16384,
         ["buildpic"] = "bar40k/orks/armada_templates/armroy.dds",

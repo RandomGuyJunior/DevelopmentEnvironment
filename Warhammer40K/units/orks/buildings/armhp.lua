@@ -1,12 +1,12 @@
 return {
-    ["bar40k_ork_armhp"] = {
+    ["orkhp"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armch",
-            [2] = "bar40k_ork_armsh",
-            [3] = "bar40k_ork_armanac",
-            [4] = "bar40k_ork_armah",
-            [5] = "bar40k_ork_armmh",
+            [1] = "orkch",
+            [2] = "orksh",
+            [3] = "orkanac",
+            [4] = "orkah",
+            [5] = "orkmh",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armhp.dds",
         ["buildtime"] = 8700,

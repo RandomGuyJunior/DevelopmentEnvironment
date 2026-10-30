@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armguard"] = {
+    ["orkboomy"] = {
         ["activatewhenbuilt"] = false,
         ["buildangle"] = 8192,
         ["buildoptions"] = {},
@@ -15,7 +15,7 @@ return {
             ["bar40k_source_asset"] = "ork_boomy_platform",
             ["bar40k_stat_template"] = "armguard",
             ["bar40k_template_source"] = "armguard",
-            ["bar40k_trajectory"] = "Native low/high toggle; exact Gauntlet primary damage/range/reload/effects",
+            ["bar40k_trajectory"] = "Native high-angle artillery",
             ["buildinggrounddecaldecayspeed"] = 30,
             ["buildinggrounddecalsizex"] = 5,
             ["buildinggrounddecalsizey"] = 5,
@@ -64,7 +64,7 @@ return {
         ["footprintx"] = 4,
         ["footprintz"] = 4,
         ["health"] = 3050,
-        ["hightrajectory"] = 2,
+        ["hightrajectory"] = 1,
         ["maxacc"] = 0,
         ["maxdec"] = 0,
         ["maxslope"] = 10,
@@ -107,7 +107,7 @@ return {
         },
         ["weapondefs"] = {
             ["primary"] = {
-                ["accuracy"] = 75,
+                ["accuracy"] = 17.289,
                 ["areaofeffect"] = 100,
                 ["avoidfeature"] = false,
                 ["avoidneutral"] = true,
@@ -127,15 +127,18 @@ return {
                 ["edgeeffectiveness"] = 0.4,
                 ["explosiongenerator"] = "custom:genericshellexplosion-medium",
                 ["gravityaffected"] = "true",
-                ["hightrajectory"] = 2,
+                ["hightrajectory"] = 1,
                 ["impulsefactor"] = 0.5,
+                ["movingaccuracy"] = 28.816,
                 ["name"] = "Heavy g2g long range plasma cannon",
                 ["noselfdamage"] = true,
+                ["ownerexpaccweight"] = 0,
                 ["range"] = 1220,
                 ["reloadtime"] = 2.85,
                 ["soundhit"] = "xplomed2",
                 ["soundhitwet"] = "splsmed",
                 ["soundstart"] = "cannhvy5",
+                ["sprayangle"] = 51.868,
                 ["turret"] = true,
                 ["weapontype"] = "Cannon",
                 ["weaponvelocity"] = 450,

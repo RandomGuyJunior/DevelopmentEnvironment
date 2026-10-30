@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armpship"] = {
+    ["orkpship"] = {
         ["blocking"] = true,
         ["buildpic"] = "bar40k/orks/armada_templates/armpship.dds",
         ["buildtime"] = 4250,

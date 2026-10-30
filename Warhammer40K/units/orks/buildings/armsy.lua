@@ -1,14 +1,14 @@
 return {
-    ["bar40k_ork_armsy"] = {
+    ["orkshipyard"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "bar40k_ork_armcs",
-            [2] = "bar40k_ork_armrecl",
-            [3] = "bar40k_ork_armdecade",
-            [4] = "bar40k_ork_armpt",
-            [5] = "bar40k_ork_armpship",
-            [6] = "bar40k_ork_armroy",
-            [7] = "bar40k_ork_armsub",
+            [1] = "orkcs",
+            [2] = "orkrecl",
+            [3] = "orkdecade",
+            [4] = "orkpt",
+            [5] = "orkpship",
+            [6] = "orkroy",
+            [7] = "orksub",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armsy.dds",
         ["buildtime"] = 5160,

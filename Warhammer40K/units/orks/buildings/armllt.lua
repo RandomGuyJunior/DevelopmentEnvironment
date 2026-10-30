@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armllt"] = {
+    ["orkllt"] = {
         ["buildangle"] = 32768,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armllt.dds",

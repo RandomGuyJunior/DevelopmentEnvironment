@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armfatf"] = {
+    ["orkfatf"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 16400,
         ["buildoptions"] = {},

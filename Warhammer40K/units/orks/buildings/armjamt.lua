@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armjamt"] = {
+    ["orkjamt"] = {
         ["activatewhenbuilt"] = true,
         ["buildangle"] = 4400,
         ["buildoptions"] = {},

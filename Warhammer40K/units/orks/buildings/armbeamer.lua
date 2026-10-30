@@ -1,5 +1,5 @@
 return {
-    ["bar40k_ork_armbeamer"] = {
+    ["orkbeamer"] = {
         ["buildangle"] = 32768,
         ["buildoptions"] = {},
         ["buildpic"] = "bar40k/orks/armada_templates/armbeamer.dds",
