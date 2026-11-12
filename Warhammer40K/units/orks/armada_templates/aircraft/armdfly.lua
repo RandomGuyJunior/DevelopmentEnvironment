@@ -11,6 +11,7 @@ return {
         ["collisionvolumetype"] = "CylY",
         ["cruisealtitude"] = 135,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armdfly",
             ["crashable"] = 0,
             ["faction"] = "Orks",

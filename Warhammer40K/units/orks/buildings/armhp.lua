@@ -2,9 +2,9 @@ return {
     ["orkhp"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orkch",
-            [2] = "orksh",
-            [3] = "orkanac",
+            [1] = "orksh",
+            [2] = "orkanac",
+            [3] = "orkch",
             [4] = "orkah",
             [5] = "orkmh",
         },

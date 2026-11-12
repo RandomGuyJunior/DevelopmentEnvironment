@@ -8,6 +8,7 @@ return {
         ["collide"] = false,
         ["cruisealtitude"] = 210,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armsb",
             ["faction"] = "Orks",
             ["model_author"] = "FireStorm",

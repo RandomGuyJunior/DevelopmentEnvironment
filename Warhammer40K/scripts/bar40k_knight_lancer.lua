@@ -1,9 +1,12 @@
 local shared=include("bar40k/animation_data.lua")("bar40k/bar40k_knight_lancer_animation.lua")
 local data=setmetatable({clips={}}, {__index=shared})
 for k,v in pairs(shared.clips)do data.clips[k]=v end
+-- Ranged lance shots use the finite arm aim only; explicit melee actions
+-- still call BeginSourceAction and retain the original whole-body strike.
+data.independentWeaponActions=true
 include("bar40k/knight_repaired_actor.lua")(data)
 local nextMuzzle={};local oldQuery,oldShot=script.QueryWeapon,script.Shot
-function script.QueryWeapon(n)local list=data.weapons[n].muzzles;return piece(list[nextMuzzle[n]or 1])end
+function script.QueryWeapon(n)if n==2 then return piece('pivot_lance')end;local list=data.weapons[n].muzzles;return piece(list[nextMuzzle[n]or 1])end
 function script.Shot(n)oldShot(n);nextMuzzle[n]=(nextMuzzle[n]or 1)%#data.weapons[n].muzzles+1 end
 local oldAim,oldBlock=script.AimWeapon,script.BlockShot
 local function rangedTooClose()
@@ -17,8 +20,15 @@ local function rangedTooClose()
   if tx and (tx-x)^2+(tz-z)^2<=minimum*minimum then return true end
   return false
 end
-local ranged=data.clips.fire;local pending,exclusive=nil,0
-function script.AimWeapon(n,h,p)if n==1 and rangedTooClose()then return false end;return oldAim(n==2 and 1 or n,h,p)end
+local contact=include('bar40k/knight_lancer_contact.lua')(data)
+local ranged=data.clips.fire;local pending,exclusive,nextAttempt=nil,0,0
+local oldAimFrom=script.AimFromWeapon
+-- A moving spear tip is not a stable native range/aim origin during a thrust.
+function script.AimFromWeapon(n)if n==2 then return piece('ion_shield_center')end;return oldAimFrom(n)end
+function script.AimWeapon(n,h,p)
+ if n==2 then return contact.Target()~=nil and math.abs(h or 0)<=math.rad(70)end
+ if n==1 and rangedTooClose()then return false end;return oldAim(n,h,p)
+end
 local oldFire=script.FireWeapon
 function script.FireWeapon(n)if n~=2 then oldFire(n)end end
 function script.BlockShot(n)
@@ -30,20 +40,26 @@ function script.BlockShot(n)
   if rangedTooClose()then return true end
   if frame<exclusive then return true end;data.clips.fire=ranged;return oldBlock(1)
  end
+ local target=contact.Target()
+ if pending and target~=pending.target then pending=nil;return true end
+ if not target then return true end
+ local x,y,z=Spring.GetUnitPiecePosDir(unitID,piece('muzzle_lance'))
+ if not x then return true end
+ local tip={x,y,z}
  if not pending then
-  pending=frame;exclusive=frame+46;script.BeginSourceAction(data.clips.melee,46)
+  if frame<nextAttempt then return true end
+  local clip=contact.Prepare(target);if not clip then return true end
+  pending={frame=frame,target=target,lastTip=tip};exclusive=frame+46;nextAttempt=exclusive
+  script.BeginSourceAction(clip,46)
   return true
  end
- if frame-pending<18 then return true end
- if frame-pending>25 then pending=nil;return true end
- local kind,_,target=Spring.GetUnitWeaponTarget(unitID,2)
- if kind~=1 or not target or not Spring.ValidUnitID(target)or Spring.GetUnitIsDead(target)then pending=nil;return true end
- local x,y,z=Spring.GetUnitPiecePosDir(unitID,piece('muzzle_lance'))
- local tx,ty,tz,mx,my,mz=Spring.GetUnitPosition(target,true)
- tx,ty,tz=mx or tx,my or ty,mz or tz
- if not(x and tx)then return true end
- local radius=Spring.GetUnitRadius(target)or 0
- return (x-tx)^2+(y-ty)^2+(z-tz)^2>(radius+35)^2
+ local age=frame-pending.frame;local previous=pending.lastTip;pending.lastTip=tip
+ if age<18 then return true end
+ if age>25 then pending=nil;return true end
+ -- Check the actual tip sweep against the target collision bounds, with only
+ -- three units for the blade thickness. The native invisible beam still owns
+ -- collision, armour, damage, experience and its existing three-second reload.
+ return not contact.Touches(target,previous,tip)
 end
 local baseShot=script.Shot
 function script.Shot(n)baseShot(n);if n==2 then pending=nil end end

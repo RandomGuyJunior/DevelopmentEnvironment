@@ -11,6 +11,7 @@ return {
         ["collisionvolumetype"] = "CylY",
         ["cruisealtitude"] = 120,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armstil",
             ["faction"] = "Orks",
             ["model_author"] = "FireStorm",

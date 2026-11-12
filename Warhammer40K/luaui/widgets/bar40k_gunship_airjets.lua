@@ -4,7 +4,8 @@ function widget:GetInfo()
 end
 
 local gunship=UnitDefNames.orkgunship
-if not gunship then return false end
+local carrier=UnitDefNames.orkbombship
+if not gunship and not carrier then return false end
 local S=Spring
 local markers={'engine_exhaust_port','engine_exhaust_starboard'}
 local tracked,attached={},{}
@@ -87,7 +88,8 @@ local function reconcile(id)
 end
 
 local function track(id,defID)
- if (defID or S.GetUnitDefID(id))==gunship.id then tracked[id]=true end
+ local kind=defID or S.GetUnitDefID(id)
+ if (gunship and kind==gunship.id)or(carrier and kind==carrier.id)then tracked[id]=true end
 end
 
 local function rescan()

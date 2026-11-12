@@ -8,6 +8,7 @@ return {
         ["collide"] = true,
         ["cruisealtitude"] = 100,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armbrawl",
             ["faction"] = "Orks",
             ["firingceg"] = "barrelshot-tiny",

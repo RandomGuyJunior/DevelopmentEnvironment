@@ -1,0 +1,1 @@
+return {["tex1"]="bar40k_orks_shared_tex1.dds",["tex2"]="bar40k_orks_shared_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["height"]=66.6881642,["radius"]=55.4504983,["midpos"]={-1.46569729,33.3440821,-1.163311},["mins"]={-33.0073166,4.50913475e-08,-32.2769127},["maxs"]={30.075922,66.6881642,29.9502907}}

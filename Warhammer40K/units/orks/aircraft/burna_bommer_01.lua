@@ -11,6 +11,7 @@ return {
         ["collisionvolumetype"] = "Box",
         ["cruisealtitude"] = 165,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_source_model"] = "BurnaBommer.msh",
             ["bar40k_source_sha256"] = "acbe5d7b9724d6955162ad446418f48df3077f912c20bd58b0228f98d0fdc66b",
             ["bar40k_stat_template"] = "armthund",

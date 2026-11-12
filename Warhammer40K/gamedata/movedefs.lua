@@ -8,7 +8,7 @@
 --  > Weight class := S: Small | M: Medium | H: Heavy
 --  > Mobility := A: Amphibious | T: All-Terrain | U: Underwater | V: Upright
 --  > Category :=  BOT: Bots | BOAT: Ships | HOVER: Hovers | TANK: Vehicles
---  > Footprint := 1–10: Footprint size
+--  > Footprint := 1â€“10: Footprint size
 
 ----------------------------------------------------------------------------------
 -- REFERENCE VALUES
@@ -581,6 +581,53 @@ moveDatas.ORKGARGANTBOT8 = {footprint=8, crushstrength=CRUSH.MASSIVE,
 moveDatas.ORKGREATGARGANTBOT14 = {footprint=14, crushstrength=CRUSH.MASSIVE,
  maxslope=SLOPE.DIFFICULT, maxwaterdepth=DEPTH.MAX_SHALLOW,
  maxwaterslope=SLOPE.DIFFICULT, depthMod=0, speedModClass=SPEED_CLASS.KBot}
+
+-- Guard movement footprints retain their donor terrain rules.
+moveDatas.GUARDBOT2FIT1 = {}
+for key, value in pairs(moveDatas.BOT2) do
+  moveDatas.GUARDBOT2FIT1[key] = value
+end
+moveDatas.GUARDBOT2FIT1.footprint = 1
+moveDatas.GUARDBOT3FIT1 = {}
+for key, value in pairs(moveDatas.BOT3) do
+  moveDatas.GUARDBOT3FIT1[key] = value
+end
+moveDatas.GUARDBOT3FIT1.footprint = 1
+moveDatas.GUARDBOT3FIT2 = {}
+for key, value in pairs(moveDatas.BOT3) do
+  moveDatas.GUARDBOT3FIT2[key] = value
+end
+moveDatas.GUARDBOT3FIT2.footprint = 2
+moveDatas.GUARDCOMMANDERBOTFIT1 = {}
+for key, value in pairs(moveDatas.COMMANDERBOT) do
+  moveDatas.GUARDCOMMANDERBOTFIT1[key] = value
+end
+moveDatas.GUARDCOMMANDERBOTFIT1.footprint = 1
+moveDatas.GUARDHBOT7FIT4 = {}
+for key, value in pairs(moveDatas.HBOT7) do
+  moveDatas.GUARDHBOT7FIT4[key] = value
+end
+moveDatas.GUARDHBOT7FIT4.footprint = 4
+moveDatas.GUARDHBOT7FIT5 = {}
+for key, value in pairs(moveDatas.HBOT7) do
+  moveDatas.GUARDHBOT7FIT5[key] = value
+end
+moveDatas.GUARDHBOT7FIT5.footprint = 5
+moveDatas.GUARDHTANK4FIT2 = {}
+for key, value in pairs(moveDatas.HTANK4) do
+  moveDatas.GUARDHTANK4FIT2[key] = value
+end
+moveDatas.GUARDHTANK4FIT2.footprint = 2
+moveDatas.GUARDTANK3FIT1 = {}
+for key, value in pairs(moveDatas.TANK3) do
+  moveDatas.GUARDTANK3FIT1[key] = value
+end
+moveDatas.GUARDTANK3FIT1.footprint = 1
+moveDatas.GUARDTANK3FIT2 = {}
+for key, value in pairs(moveDatas.TANK3) do
+  moveDatas.GUARDTANK3FIT2[key] = value
+end
+moveDatas.GUARDTANK3FIT2.footprint = 2
 
 local defs = {}
 

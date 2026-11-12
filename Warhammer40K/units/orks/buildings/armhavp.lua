@@ -2,12 +2,12 @@ return {
     ["orkhavp"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orkmerl",
+            [1] = "orklatnk",
             [2] = "orkyork",
             [3] = "orkjam",
-            [4] = "orkgremlin",
-            [5] = "orkkillbursta",
-            [6] = "orklatnk",
+            [4] = "orkmerl",
+            [5] = "orkgremlin",
+            [6] = "orkkillbursta",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armhavp.dds",
         ["buildtime"] = 85000,

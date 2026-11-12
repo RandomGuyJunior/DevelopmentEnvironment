@@ -1,0 +1,1 @@
+return {["mins"]={-21.723516,0,-43.515936},["maxs"]={22.092204,40.647552,36.708888},["midpos"]={0.184344,20.323776,-3.403524},["height"]=40.647552,["radius"]=50.0201539,["tex1"]="bar40k_orks_shared_tex1.dds",["tex2"]="bar40k_orks_shared_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["atlasUVFinal"]=true}

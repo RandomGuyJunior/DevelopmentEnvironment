@@ -65,6 +65,8 @@ local showEngineTooltip = false -- straight up display old engine delivered text
 
 local iconTypes = require("gamedata/icontypes")
 local weaponInfo = require("common/weapons")
+local bar40kDps = VFS.Include("luaui/widgets/include/bar40k_scripted_dps.lua")
+local bar40kDpsEntries = VFS.Include("luaui/configs/bar40k_scripted_dps.lua")
 
 local vsx, vsy = Spring.GetViewGeometry()
 
@@ -156,6 +158,12 @@ local function infantrySalvageOwner(id)
 end
 local function infantrySalvageResources(id)
  return Spring.GetFeatureResources(infantrySalvageOwner(id))
+end
+local function salvageGroupTitle(id,fallback)
+ local owner=infantrySalvageOwner(id)
+ local d=FeatureDefs[Spring.GetFeatureDefID(owner)]
+ if d and d.customParams.great_gargant_salvage then return "Great Gargant Scrap Heap"end
+ return owner~=id and "Infantry salvage pile (shared)"or fallback
 end
 local spGetFeatureDefID = Spring.GetFeatureDefID
 local spTraceScreenRay = Spring.TraceScreenRay
@@ -667,6 +675,11 @@ local function refreshUnitInfo()
 				end
 			end
 		end
+	end
+
+	-- Opt-in 40K display metadata only; native units keep their original totals.
+	for id, definition in pairs(UnitDefs) do
+		bar40kDps.Apply(definition, unitDefInfo[id], WeaponDefs, weaponInfo, bar40kDpsEntries, armorIndex)
 	end
 
 	-- Convert aggregated values to display formats last to avoid rounding errors.
@@ -3104,22 +3117,25 @@ local function drawUnitInfo()
 				if unitDefInfo[displayUnitDefID].reloadTime then
 					reloadTimeSpeedup = currentReloadTime / unitDefInfo[displayUnitDefID].reloadTime
 					local reloadTimeSpeedupPercentage = tonumber(round((1 - reloadTimeSpeedup) * 100, 0))
-					if reloadTimeSpeedupPercentage > 0 then
+					if reloadTimeSpeedupPercentage > 0 and not unitDefInfo[displayUnitDefID].bar40kDpsScriptCap then
 						addTextInfo(BAR.I18N("ui.info.reload"), "-" .. reloadTimeSpeedupPercentage .. "%")
 					end
 				end
 			end
 
+			local dpsInfo = unitDefInfo[displayUnitDefID]
+			local dpsReload = dpsInfo.bar40kDpsScriptCap and 1 or reloadTimeSpeedup
+			local dpsAlive = bar40kDps.AliveScale(dpsInfo, displayUnitID, displayMode, Spring.GetUnitRulesParam)
 			-- basic dps display
 			if mindps and mindps > 0 and mindps == maxdps then
-				local dps = round(mindps / reloadTimeSpeedup, 0)
-				addTextInfo(BAR.I18N("ui.info.dps"), dps)
+				local dps = round(mindps * dpsAlive / dpsReload, 0)
+				addTextInfo(dpsInfo.bar40kRangedDps and "Ranged DPS" or BAR.I18N("ui.info.dps"), dps)
 
 			-- dps range
 			elseif mindps ~= maxdps then
-				local min = round(mindps / reloadTimeSpeedup, 0)
-				local max = round(maxdps / reloadTimeSpeedup, 0)
-				addTextInfo("DPS", min .. "-" .. max)
+				local min = round(mindps * dpsAlive / dpsReload, 0)
+				local max = round(maxdps * dpsAlive / dpsReload, 0)
+				addTextInfo(dpsInfo.bar40kRangedDps and "Ranged DPS" or "DPS", min .. "-" .. max)
 			end
 
 			-- emp dps display
@@ -3436,7 +3452,7 @@ local function drawEngineTooltip()
 				font:End()
 			elseif hoverType == "feature" then
 				local featureDefID = Spring.GetFeatureDefID(hoverData)
-				local text = infantrySalvageOwner(hoverData)~=hoverData and "Infantry salvage pile (shared)" or FeatureDefs[featureDefID].tooltip
+				local text = salvageGroupTitle(hoverData,FeatureDefs[featureDefID].tooltip)
 				local height = 0
 				if text == "" then
 					text = FeatureDefs[featureDefID].translatedDescription
@@ -4193,7 +4209,7 @@ function checkChanges()
 			tracy.ZoneEnd()
 			return
 		end
-		local newTooltip = infantrySalvageOwner(featureID)~=featureID and "Infantry salvage pile (shared)" or featureDef.translatedDescription or ""
+		local newTooltip = salvageGroupTitle(featureID,featureDef.translatedDescription or "")
 
 		if featureDef.reclaimable then
 			local metal, _, energy, _ = infantrySalvageResources(featureID)

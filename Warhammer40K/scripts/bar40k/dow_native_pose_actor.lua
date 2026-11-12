@@ -1,6 +1,7 @@
 -- One writer for new hierarchical source rigs. Native BAR owns motion,
 -- target selection, projectiles, damage, economy and transport lifecycle.
 return function(data)
+ local footfall=include('bar40k/titan_footfalls.lua')()
  local bones,byname,previous={}, {}, {}
  for i,name in ipairs(data.bones)do bones[i]=piece(name);byname[name]=i end
  local weapons={}
@@ -93,6 +94,7 @@ return function(data)
     end
     previous[i]=old
    end
+   footfall(chosen=='walk' and phase/data.clips.walk.duration or 0,chosen=='walk' and playback>.01)
    Sleep(33)
   end
  end

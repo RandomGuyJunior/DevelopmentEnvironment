@@ -1,1 +1,1 @@
-return {tex1='bar40k_orks_shared_tex1.dds',tex2='orksquad_material.dds',fliptextures=false,invertteamcolor=false,radius=11.810779419759504,height=7.841292417049408}
+return {["tex1"]="bar40k_orks_shared_tex1.dds",["tex2"]="bar40k_orks_shared_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["mins"]={-11.6475887,0,-4.03164911},["maxs"]={4.54929972,8.34923267,10.6535416},["midpos"]={-3.54914451,4.17461634,3.31094623},["height"]=8.34923267,["radius"]=12.7015352}
