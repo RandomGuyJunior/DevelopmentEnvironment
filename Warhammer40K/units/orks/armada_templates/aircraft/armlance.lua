@@ -8,6 +8,7 @@ return {
         ["cruisealtitude"] = 90,
         ["customparams"] = {
             ["areaattack_unlimited"] = true,
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armlance",
             ["faction"] = "Orks",
             ["model_author"] = "Flaka",

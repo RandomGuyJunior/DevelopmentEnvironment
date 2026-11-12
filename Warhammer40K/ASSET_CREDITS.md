@@ -25,3 +25,8 @@ Runtime artwork/animations include Dawn of War / Ultimate Apocalypse, Sanctus Re
 ## Alpha.9 sources
 
 Additional approved runtime model/animation derivatives include Dawn of War / Ultimate Apocalypse, Sanctus Reach, Gladius, Dakka Squadron and the previously credited imported Knight sources. Project-authored conversions, assemblies, animation repairs and paint derivatives are included. Existing source notices remain. Owner authorization to distribute imported assets/music is retained; this is not an assertion of independent third-party license clearance. Original/editable libraries and unused assets are not shipped.
+
+
+## Alpha.10 sources
+
+Imperial Guard runtime derivatives include the previously credited Dawn of War / Ultimate Apocalypse and Gladius sources. Existing notices remain.

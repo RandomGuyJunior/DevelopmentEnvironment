@@ -80029,7 +80029,7 @@ return {
     ["scale"] = 0.15234459356932237,
     ["schema"] = 1,
     ["sourceForward"] = "+X",
-    ["stride"] = 17.718206341249303,
+    ["stride"] = 18.431700000000003,
     ["varyingChannels"] = {
         [1] = {
             [1] = true,

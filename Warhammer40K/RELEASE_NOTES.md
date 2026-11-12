@@ -1,19 +1,5 @@
-# Warhammer 40K BAR — Orks alpha.9
+# Warhammer 40K BAR alpha.10
 
-Generated from the installed 0.39.0-dev1 development build. Enable the existing Warhammer mod in RandomGuy's Mods tab and choose the Ork commander. The existing catalog ID, source directory and Rapid tag are unchanged; dependency remains `rapid://randomguy-hosting:test`.
+This clean runtime export adds the Imperial Guard alongside Orks and native BAR factions. It includes the updated vehicle weapons, Devil Dog paint and both Chimera variants. The existing Mods entry and Rapid dependency remain the same.
 
-This update retains the additional Orks faction alongside native Armada, Cortex and Legion, its owned Armada comparison roster, ordinary final UnitDefs/buildoptions, and sole additional `startunit` commander. There is no runtime UnitDef conversion, commander replacement or Warhammer-specific Chobby hook. Imported runtime assets are included; editable originals, asset banks, history, maps, engines, settings and experiments are excluded.
-
-Since alpha.8, the roster includes cheaper replacement DoW/Ultimate Apocalypse/Gladius models, Imperial Knight comparison units, Gargant/Great Gargant, updated vehicles, AA/artillery Gunwagon variants, infantry, aircraft and walker weapons/animations. Current building grids, shorter unit IDs, production menus and balance/facing corrections are preserved. Unaccepted full-imposter/legacy performance experiments and temporary paint/sound/model comparisons removed from development are absent here. Some accepted signed-depth models and their renderer remain; original source assets are banked outside this package.
-
-The approved yellow Gargant and red/flame Great Gargant paint is now standard. Giant aiming/selection, Great Gargant Fight approach and Juggernaut death explosion are included. Gorkanaut/Morkanaut retain their restored T2 statistics with Experimental Gantry placement. Wheel/track motion remains intentionally static where previously requested.
-
-Latest Knight changes: Lancer native speed 66 and a stance-retargeted walk replace the rejected variable-speed controller; Lancer/Warden/Paladin have Ranged/Charge controls; the Lancer's ranged weapon is blocked at 150 or closer and its melee slot targets independently. All four Knights now use fitted full-sphere native BAR plasma shields, with stronger Lancer capacity. These latest changes passed offline actor/geometry checks but still await user in-game acceptance.
-
-A recorded startup crash entered Intel's driver from native DDS mipmap generation. Fifteen inherited non-decal model textures now provide complete precomputed mip chains. Base image detail is retained; the exact original triggering texture was not logged. This is a mitigation awaiting further native confirmation, not a guarantee against every driver crash.
-
-Validation: installed source/archive hash binding; ordinary UnitDefs, closed own production graph, sole Ork startunit, native unit-name collision exclusion, Lua syntax, GLB binary/geometry identity through release sanitization, asset references, Git blob limits and unchanged other catalog/workflow files. Prior development packets contain executed offline aiming, melee, shield-binding and skinned-gait checks. No fresh graphical, multiplayer/WAN, Linux or public Rapid-download pass is claimed. The current project remains an unfinished development alpha with provisional balance and renderer limitations.
-
-The full local compressed development archive is 634,157,134 bytes (approximately 634 MB / 605 MiB); the generated release differs in identity/notes/sanitized metadata, so its actual Rapid download size must be measured after publication. Unpacked runtime is approximately 1.37 GB, substantially below alpha.8's 2.33 GB. Existing clients can reuse unchanged Rapid objects; no exact incremental-download claim is made.
-
-After maintainer merge, the existing workflow must publish/reindex `dev-mods:warhammer-40k`. A fresh Mods-tab download, Ork skirmish and matching multiplayer join remain public-route acceptance checks. Do not treat this PR as deployment confirmation.
+The exported archive inventory, unit definitions, build menus and Lua syntax were checked offline. A fresh launcher download and match are pending publication.

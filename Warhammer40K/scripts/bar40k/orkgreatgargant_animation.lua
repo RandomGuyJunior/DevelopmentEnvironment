@@ -47618,9 +47618,10 @@ return {
     ["walkspeed"] = 24.6861169,
     ["weaponMounts"] = {
         [1] = {
+            ["centerYaw"] = 0,
             ["fireClip"] = "fire_belly",
             ["maxPitch"] = 50,
-            ["maxYaw"] = 3,
+            ["maxYaw"] = 25,
             ["minPitch"] = -70,
             ["muzzles"] = {
                 [1] = "belly_muzzle",
@@ -47628,13 +47629,15 @@ return {
             ["pitch"] = "belly_gun_bone",
             ["pitchSpeed"] = 30,
             ["sfx"] = 1,
+            ["yaw"] = "belly_gun_bone",
             ["yawSpeed"] = 35,
         },
         [2] = {
             ["alternateSalvo"] = true,
+            ["centerYaw"] = 35,
             ["fireClip"] = "fire",
             ["maxPitch"] = 70,
-            ["maxYaw"] = 50,
+            ["maxYaw"] = 57.5,
             ["minPitch"] = -70,
             ["muzzles"] = {
                 [1] = "left_gun_muzzle_down",
@@ -47647,9 +47650,10 @@ return {
             ["yawSpeed"] = 35,
         },
         [3] = {
+            ["centerYaw"] = -35,
             ["fireClip"] = "fire_right",
             ["maxPitch"] = 70,
-            ["maxYaw"] = 50,
+            ["maxYaw"] = 57.5,
             ["minPitch"] = -70,
             ["muzzles"] = {
                 [1] = "right_gun_energy_cone",
@@ -47661,9 +47665,12 @@ return {
             ["yawSpeed"] = 35,
         },
         [4] = {
+            ["centerYaw"] = 90,
             ["fireClip"] = "fire_top_left",
+            ["foreAftMinPitch"] = -8,
+            ["inboardMinPitch"] = 10,
             ["maxPitch"] = 80,
-            ["maxYaw"] = 100,
+            ["maxYaw"] = 135,
             ["minPitch"] = -35,
             ["muzzles"] = {
                 [1] = "top_gun_muzzle_left",
@@ -47675,9 +47682,12 @@ return {
             ["yawSpeed"] = 35,
         },
         [5] = {
+            ["centerYaw"] = -90,
             ["fireClip"] = "fire_top_right",
+            ["foreAftMinPitch"] = -8,
+            ["inboardMinPitch"] = 10,
             ["maxPitch"] = 80,
-            ["maxYaw"] = 100,
+            ["maxYaw"] = 135,
             ["minPitch"] = -35,
             ["muzzles"] = {
                 [1] = "top_gun_muzzle_right",

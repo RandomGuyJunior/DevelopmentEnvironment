@@ -3,7 +3,7 @@
 -- have constant source-bind transforms; only the weapon/crew may animate.
 return function(data)
  local bones={};for i,name in ipairs(data.bones)do bones[i]=piece(name)end
- local yaw,pitch=piece('mount_yaw','mount_pitch');local muzzles={piece('muzzle1','muzzle2','muzzle3','muzzle4')};local barrel=1
+ local yaw,pitch=piece('mount_yaw','mount_pitch');local muzzles={piece('muzzle1','muzzle2','muzzle3','muzzle4')};local barrel=1;local shotBarrel=1
  local aim=data.aim;local desiredYaw,desiredPitch=0,0
  local owner,holdUntil=nil,-1;local fired=-100000
  local function delta(a,b)return(b-a+math.pi)%(2*math.pi)-math.pi end
@@ -49,7 +49,7 @@ return function(data)
  function script.Activate()return 1 end
  function script.Deactivate()return 0 end
  function script.AimFromWeapon()return pitch end
- function script.QueryWeapon()return muzzles[barrel]end
+ function script.QueryWeapon()return muzzles[shotBarrel]end
  function script.AimWeapon(n,h,p)
   local now=Spring.GetGameFrame();h,p=h or 0,p or 0
   local minimum=aim.minPitch
@@ -59,8 +59,8 @@ return function(data)
   -- Primary AA can pre-empt secondary ground fire; otherwise retain a short lease.
   if owner and owner~=n and now<holdUntil and n~=1 then return false end
   owner=n;holdUntil=now+30;desiredYaw=aim.fixedBed and 0 or h;desiredPitch=p
-  Turn(yaw,y_axis,desiredYaw,math.rad(aim.yawRate))
-  Turn(pitch,x_axis,-desiredPitch,math.rad(aim.pitchRate))
+  Turn(yaw,y_axis,desiredYaw,math.rad(aim.yawRate*2))
+  Turn(pitch,x_axis,-desiredPitch,math.rad(aim.pitchRate*2))
   local timeout=now+240
   while not settled()do
    if owner~=n or Spring.GetGameFrame()>timeout then return false end
@@ -72,7 +72,11 @@ return function(data)
  function script.BlockShot(n)return owner~=n or not settled()end
  function script.FireWeapon(n)if owner==n then fired=Spring.GetGameFrame()end end
  function script.Shot(n)
-  if owner==n then fired=Spring.GetGameFrame();EmitSfx(muzzles[barrel],1024);barrel=barrel%4+1 end
+  if owner==n then
+   -- Native order: Shot selects this projectile, then QueryWeapon reads it.
+   shotBarrel=barrel;fired=Spring.GetGameFrame()
+   EmitSfx(muzzles[shotBarrel],1024);barrel=barrel%4+1
+  end
  end
  function script.Killed()return 0 end
 end

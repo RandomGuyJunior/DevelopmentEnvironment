@@ -1,9 +1,12 @@
 -- Source-local interpolation for explicitly opted-in flattened native palettes.
 -- Source bind transforms and dynamic local translations remain authoritative.
 -- One controller writes pieces; this module only returns immutable pose rows.
+local frameAt=include('bar40k/packed_animation_frame.lua')
 return function(meta)
  local count=meta.jointCount
- local localCache=setmetatable({},{__mode='k'})
+ GG.Bar40KSourceLocalCache=GG.Bar40KSourceLocalCache or setmetatable({},{__mode='k'})
+ local localCache=GG.Bar40KSourceLocalCache[meta]
+ if not localCache then localCache=setmetatable({},{__mode='k'});GG.Bar40KSourceLocalCache[meta]=localCache end
  local function multiply(a,b)
   local c={}
   for r=0,2 do
@@ -86,7 +89,7 @@ return function(meta)
  local function sample(clip,time,loop)
   time=loop and time%clip.duration or math.max(0,math.min(time,clip.duration))
   local pos=time*clip.fps;local index=math.min(#clip.frames,1+math.floor(pos));local following=index<#clip.frames and index+1 or(loop and 1 or index)
-  return blend(clip.frames[index],clip.frames[following],pos-math.floor(pos))
+  return blend(frameAt(clip.frames,index),frameAt(clip.frames,following),pos-math.floor(pos))
  end
  local function mergeUpper(a,b,upper)
   local aa,bb=toLocal(a),toLocal(b);local out={};for i=1,count do out[i]=aa[i]end

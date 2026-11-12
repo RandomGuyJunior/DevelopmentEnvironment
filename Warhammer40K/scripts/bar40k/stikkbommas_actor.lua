@@ -197,11 +197,11 @@ local function updateMembers(frame)
   for i,m in ipairs(members) do
     if i<=count and m.state~='alive' then
       if m.corpse and GG.SquadRemoveRemains then GG.SquadRemoveRemains(m.corpse) end
-      m.corpse=nil;m.state='alive';m.previous={};m.basePrevious=nil;m.shotFrame=-1000;m.throwStart=nil;m.throwSpent=nil;m.lastGrenadeStart=frame
+      m.corpse=nil;m.state='alive';m.previous={};m.basePrevious=nil;m.shotFrame=-1000;m.throwStart=nil;m.throwAt=nil;m.throwSpent=nil;m.lastGrenadeStart=frame
       Move(m.root,y_axis,0);apply(m,data.ready,0.1,true)
       publish('member_'..i,1);publish('hidden_'..i,0)
     elseif i>count and m.state=='alive' then
-      m.state='dying';m.instantWalk=false;m.deathFrame=frame;m.throwStart=nil;m.grenadePoseFrame=nil;publish('member_'..i,0)
+      m.state='dying';m.instantWalk=false;m.deathFrame=frame;m.throwStart=nil;m.throwAt=nil;m.grenadePoseFrame=nil;publish('member_'..i,0)
     end
   end
 end
@@ -282,10 +282,12 @@ end
 -- Dedicated, local presentation timing. Native weapons still create every
 -- projectile and own damage/flight. A throw must visibly reach the source cue
 -- before BlockShot permits a projectile; casualty/target/movement cancels it.
-local nextGrenadeDispatch=0
+-- Deterministic local shuffle changes the small delays/member ordering each
+-- volley without consuming any shared RNG or adding a controller/thread.
+local nextGrenadeVolley,grenadeVolley=0,0
 local function grenadeDispatch(f)
   if speed>.5 or not targetX or engaged() or f>=aimUntil then
-    for _,m in ipairs(members)do m.throwStart=nil;m.grenadePoseFrame=nil end
+    for _,m in ipairs(members)do m.throwStart=nil;m.throwAt=nil;m.grenadePoseFrame=nil end
     return
   end
   for _,m in ipairs(members)do
@@ -293,14 +295,34 @@ local function grenadeDispatch(f)
       m.throwStart=nil;m.grenadePoseFrame=nil
     end
   end
-  if f<nextGrenadeDispatch then return end
+  if f>=nextGrenadeVolley then
+    local ready={}
+    for _,m in ipairs(members)do
+      if m.state=='alive'and not m.throwStart and readyToFire(m,f)then ready[#ready+1]=m end
+    end
+    if #ready>0 then
+      grenadeVolley=grenadeVolley+1
+      local seed=(unitID*104729+grenadeVolley*7919)%2147483647
+      local function random(n)seed=seed*16807%2147483647;return seed%n+1 end
+      local window=math.max(capacity-1,math.floor(tonumber(cp.squad_grenade_jitter_frames)or 15))
+      local slots={};for i=1,window do slots[i]=i end
+      for i=#slots,2,-1 do local j=random(i);slots[i],slots[j]=slots[j],slots[i]end
+      local offsets={0};for i=2,#ready do offsets[i]=slots[i-1]end
+      table.sort(offsets)
+      for i=#ready,2,-1 do local j=random(i);ready[i],ready[j]=ready[j],ready[i]end
+      salvoStart,salvoSpent=f,{}
+      for i,m in ipairs(ready)do m.throwAt=f+offsets[i];m.throwSpent=false end
+      nextGrenadeVolley=f+math.floor((salvoPeriod or data.grenadePeriodFrames/fps)*fps+.5)
+      publish('volley',grenadeVolley);publish('volley_start',f)
+    end
+  end
   for _,m in ipairs(members)do
-    if m.state=='alive' and not m.throwStart and readyToFire(m,f)
-      and f-(m.lastGrenadeStart or -10000)>=data.grenadePeriodFrames then
-      m.throwStart=f;m.lastGrenadeStart=f;m.throwSpent=false
-      nextGrenadeDispatch=f+data.grenadeDispatchFrames
-      publish('throw_start_'..m.index,f)
-      return
+    if m.throwAt and f>=m.throwAt then
+      if m.state=='alive'and readyToFire(m,f)then
+        m.throwStart=f;m.lastGrenadeStart=f;m.throwSpent=false
+        publish('throw_start_'..m.index,f)
+      end
+      m.throwAt=nil
     end
   end
 end
@@ -315,7 +337,8 @@ local function animate()
       for _,m in ipairs(members) do if f<(m.armTransitionUntil or -1) then interval=1;break end end
     end
     if speed>.5 and f>=aimUntil and not meleeTarget then interval=1 end
-    for _,m in ipairs(members)do if m.throwStart then interval=1;break end end
+    for _,m in ipairs(members)do if m.throwStart or m.throwAt then interval=1;break end end
+    if targetX and f<aimUntil and nextGrenadeVolley>0 and nextGrenadeVolley-f<=2 then interval=1 end
     local seconds=interval/fps
     for _,m in ipairs(members) do
       if m.state=='alive' then
@@ -507,14 +530,11 @@ function script.Shot(n)
   -- Engine calls Shot BEFORE QueryWeapon and creates the projectile afterwards.
   -- Select once here; Query must remain side-effect free throughout the shot.
   activeMuzzle=math.min(nextMuzzle,alive);local m=members[activeMuzzle];m.throwSpent=true
-  if salvoPeriod then
-    if not next(salvoSpent) then salvoStart=f end
-    salvoSpent[activeMuzzle]=true
-    nextAllowed=f+math.max(1,math.floor(salvoSpacing*fps+.5))
-  else
-    local period=baseReload*fps*capacity/alive+cadenceFraction
-    local ticks=math.floor(period+.000001);cadenceFraction=period-ticks;nextAllowed=f+ticks
-  end
+  -- One native projectile per living member in each five-second volley.
+  -- Spacing inside the compact batch is scheduled at source throw start;
+  -- never hold a projectile back after its hand reaches the release cue.
+  salvoSpent[activeMuzzle]=true
+  nextAllowed=f+1
   m.shotFrame=f;m.meleeFrame=nil
   -- The member has already raised its weapon through a smooth ready transition.
   -- Never snap its pose here: the projectile and flash use the current barrel.
@@ -542,4 +562,20 @@ function script.Killed()
   for _,m in ipairs(members) do if m.state~='hidden' then remains(m) end end
   GG.SquadPresentation[unitID]=nil
   return 0
+end
+
+-- Throw low ballistic arcs only, never above45degrees. Native still owns flight.
+local oldThrowAim,oldThrowBlock=script.AimWeapon,script.BlockShot
+local function allowedThrowAngle(n)
+ local _,_,_,x,y,z=Spring.GetUnitWeaponVectors(unitID,n)
+ if not(x and y and z)then return false end
+ local q=x*x+y*y+z*z
+ return q>1e-12 and q<math.huge and y/math.sqrt(q)<=math.sin(math.pi/4)+1e-6
+end
+function script.AimWeapon(n,h,p)
+ if not allowedThrowAngle(n)then return false end
+ return oldThrowAim(n,h,p)
+end
+function script.BlockShot(n)
+ return not allowedThrowAngle(n)or oldThrowBlock(n)
 end

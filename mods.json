@@ -15,12 +15,12 @@
     {
       "id": "warhammer-40k",
       "name": "Warhammer 40K BAR",
-      "description": "Expanded Orks roster, Gargants and Imperial Knight comparisons; alpha development build.",
+      "description": "Orks and Imperial Guard with native BAR factions and Imperial Knight comparisons.",
       "rapid_tag": "dev-mods:warhammer-40k",
       "rapid_repo": "https://randomguyrapid.duckdns.org/repos.gz",
       "source_dir": "Warhammer40K",
       "enabled": true,
-      "version": "0.39.0-rgj-alpha.9"
+      "version": "0.39.0-rgj-alpha.10"
     }
   ]
 }

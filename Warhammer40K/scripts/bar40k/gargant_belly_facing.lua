@@ -33,7 +33,7 @@ return function()
    local distance=math.sqrt(dx*dx+dz*dz)
    if distance>1 and distance<=nativeRange then
     local yaw=(math.atan2(dx,dz)-Spring.GetUnitHeading(unitID)*math.pi/32768+math.pi)%(2*math.pi)-math.pi
-    shouldGate=math.abs(yaw)>math.rad(1.5)
+    shouldGate=math.abs(yaw)>math.rad(24)
    end
   end
   if gated~=shouldGate then

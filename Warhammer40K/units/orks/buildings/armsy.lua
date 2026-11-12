@@ -2,12 +2,12 @@ return {
     ["orkshipyard"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orkcs",
+            [1] = "orkroy",
             [2] = "orkrecl",
             [3] = "orkdecade",
-            [4] = "orkpt",
-            [5] = "orkpship",
-            [6] = "orkroy",
+            [4] = "orkcs",
+            [5] = "orkpt",
+            [6] = "orkpship",
             [7] = "orksub",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armsy.dds",

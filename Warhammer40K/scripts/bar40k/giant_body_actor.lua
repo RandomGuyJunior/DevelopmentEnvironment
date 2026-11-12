@@ -1,6 +1,7 @@
 -- One writer for new hierarchical source rigs. Native BAR owns motion,
 -- target selection, projectiles, damage, economy and transport lifecycle.
 return function(data)
+ local footfall=include('bar40k/titan_footfalls.lua')()
  local bones,byname,previous={}, {}, {}
  for i,name in ipairs(data.bones)do bones[i]=piece(name);byname[name]=i end
  local weapons={}
@@ -71,6 +72,14 @@ return function(data)
        for _,name in ipairs(clip.active_bones or{})do local i=byname[name];if i then pose[i]=sample(clip,time,i)end end
       end
      end
+     if cfg.gunAlignmentBones then
+      -- These source idle bones contain unrelated gun wobble. While aimed,
+      -- yaw/elevation owns the bore; authored recoil translations remain.
+      local target=frame<w.untilFrame and 1 or 0
+      w.rigidAimBlend=math.max(0,math.min(1,(w.rigidAimBlend or 0)+(target==1 and 1 or -1)*elapsed*4))
+      local blend=w.rigidAimBlend*w.rigidAimBlend*(3-2*w.rigidAimBlend)
+      for _,name in ipairs(cfg.gunAlignmentBones)do local i=byname[name];if i then for k=4,6 do pose[i][k]=pose[i][k]*(1-blend)end end end
+     end
      if not cfg.poseOwner and not cfg.dummy then
       if cfg.yaw then
        local i=byname[cfg.yaw]
@@ -82,9 +91,14 @@ return function(data)
        local cr,sr=math.cos(bodyRoll),math.sin(bodyRoll)
        x,y=cr*x+sr*y,-sr*x+cr*y
        w.localYaw=math.atan2(x,z);w.localPitch=math.asin(math.max(-1,math.min(1,y)))
+       if cfg.centerYaw then local center=math.rad(cfg.centerYaw);w.localYaw=center+delta(center,w.localYaw)end
        local target=w.localYaw
        if data.boundedTurretTraverse then
-        w.actualYaw=advanceAngle(w.actualYaw or pose[i][5],target,math.rad(cfg.yawSpeed or 60)*elapsed)
+        if cfg.centerYaw then
+         local current=w.actualYaw or pose[i][5];local step=math.rad(cfg.yawSpeed or 60)*elapsed
+         -- Traverse through the permitted sector, never the shorter inward gap.
+         w.actualYaw=current+math.max(-step,math.min(step,target-current))
+        else w.actualYaw=advanceAngle(w.actualYaw or pose[i][5],target,math.rad(cfg.yawSpeed or 60)*elapsed)end
         target=w.actualYaw
        end
        pose[i][5]=target
@@ -116,6 +130,7 @@ return function(data)
     end
     previous[i]=old
    end
+   footfall(chosen=='walk' and phase/data.clips.walk.duration or 0,chosen=='walk' and playback>.01)
    Sleep(33)
   end
  end
@@ -124,21 +139,68 @@ return function(data)
  function script.StopMoving()moving=false end
  function script.AimFromWeapon(n)return weapons[n].muzzles[1]end
  function script.QueryWeapon(n)local w=weapons[n];if data.weaponMounts[n].alternateSalvo then return w.salvoMuzzle or w.muzzles[w.cursor%#w.muzzles+1]end;w.queriedMuzzle=w.queriedMuzzle or w.muzzles[w.cursor%#w.muzzles+1];return w.queriedMuzzle end
+ -- The sector describes a target bearing about the chassis, not the ray
+ -- starting at a moving, offset muzzle. A target beside the walker requires
+ -- several extra degrees at the arm to converge on it. Native still owns the
+ -- trajectory and aiming direction; this reads its existing target only.
+ local function targetBearing(n,fallback)
+  if n==1 then return fallback end
+  local kind,_,value=Spring.GetUnitWeaponTarget(unitID,n)
+  local tx,tz
+  if kind==1 and value then
+   local x,y,z,mx,my,mz=Spring.GetUnitPosition(value,true)
+   tx,tz=mx or x,mz or z
+  elseif kind==2 and type(value)=='table'then tx,tz=value[1],value[3]end
+  if not tx or not tz then return fallback end
+  local x,_,z=Spring.GetUnitPosition(unitID)
+  if not x or(tx-x)^2+(tz-z)^2<1 then return fallback end
+  return delta(Spring.GetUnitHeading(unitID)*math.pi/32768,math.atan2(tx-x,tz-z))
+ end
  function script.AimWeapon(n,heading,pitch)
   local cfg,w=data.weaponMounts[n],weapons[n];heading,pitch=heading or 0,pitch or 0
   if cfg.dummy then return true end
-  local aligned=math.abs(heading)<=math.rad(cfg.maxYaw or(data.infantry and 10 or 180))and pitch>=math.rad(cfg.minPitch or -15)and pitch<=math.rad(cfg.maxPitch or 80)
+  local center=math.rad(cfg.centerYaw or 0)
+  local relative=delta(center,targetBearing(n,heading))
+  local minimum=math.rad(cfg.minPitch or -15)
+  -- Wide side-centred shoulder sectors retain forward/rear fire while the
+  -- excluded inward sector protects the head. At the overlapping diagonal
+  -- edges the barrels must lift above the shoulder deck and main hull.
+  if not(data.shoulderClearance and data.shoulderClearance[n])and cfg.foreAftMinPitch and math.abs(relative)>math.rad(65)then minimum=math.max(minimum,math.rad(cfg.foreAftMinPitch))end
+  if not(data.shoulderClearance and data.shoulderClearance[n])and cfg.inboardMinPitch and math.abs(relative)>math.rad(100)then minimum=math.max(minimum,math.rad(cfg.inboardMinPitch))end
+  local clearance=data.shoulderClearance and data.shoulderClearance[n]
+  if clearance then
+   local h=center+delta(center,heading)
+   local index=(math.deg(h)-clearance.start)/clearance.step
+   index=math.max(0,math.min(#clearance.values-1,index))
+   local first=math.floor(index)+1;local second=math.min(first+1,#clearance.values)
+   minimum=math.rad(math.max(clearance.values[first],clearance.values[second])+2)
+  end
+  -- Continue safe mechanical slewing even when the first muzzle-relative
+  -- request is below the deck limit. Re-aim then converges from the new muzzle
+  -- position. A separate strict gate forbids firing below that limit.
+  w.clearanceBlocked=clearance and pitch<minimum or false
+  if clearance then pitch=math.max(pitch,minimum)end
+  local aligned=math.abs(relative)<=math.rad(cfg.maxYaw or(data.infantry and 10 or 180))and pitch>=minimum and pitch<=math.rad(cfg.maxPitch or 80)
+  -- Slew toward the native ray without ever leaving the accepted physical
+  -- sector. During the first turn the moving muzzle may request a few degrees
+  -- beyond the stop; native re-aim converges as it moves. BlockShot still
+  -- demands the actual bore match, so partial travel cannot fake a shot.
+  if n~=1 then
+   local actual=delta(center,heading)
+   heading=center+math.max(-math.rad(cfg.maxYaw),math.min(math.rad(cfg.maxYaw),actual))
+  end
+  if cfg.centerYaw then heading=center+delta(center,heading)end
   w.ready=aligned;if not aligned then return false end
   local now=Spring.GetGameFrame();local initial=w.untilFrame<now;w.untilFrame=now+180
   if not data.infantry then w.yaw,w.pitch=heading,pitch end
   local untilFrame=now+180
   if data.infantry and initial then for i=1,6 do Sleep(33)end end
   while errors(n)do if Spring.GetGameFrame()>untilFrame then return false end;Sleep(33)end
-  return true
+  return not w.clearanceBlocked
  end
  function script.BlockShot(n)
   if data.weaponMounts[n].dummy then return false end
-  if errors(n)then return true end
+  if weapons[n].clearanceBlocked or errors(n)then return true end
   if shoulder and(n==shoulder.first or n==shoulder.second)then
    local f=Spring.GetGameFrame()
    if f<nextShoulderFrame then return true end

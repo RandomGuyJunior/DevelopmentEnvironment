@@ -2,12 +2,12 @@ return {
     ["orkhalab"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orksnipe",
+            [1] = "orkspy",
             [2] = "orkfboy",
             [3] = "orkdecom",
-            [4] = "orkscab",
-            [5] = "orkmork",
-            [6] = "orkspy",
+            [4] = "orksnipe",
+            [5] = "orkscab",
+            [6] = "orkmork",
             [7] = "orkaak",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armshltx.dds",

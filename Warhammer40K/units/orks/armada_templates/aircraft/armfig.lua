@@ -9,6 +9,7 @@ return {
         ["collide"] = false,
         ["cruisealtitude"] = 125,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["attacksafetydistance"] = 300,
             ["bar40k_stat_template"] = "armfig",
             ["faction"] = "Orks",

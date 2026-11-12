@@ -2,11 +2,10 @@ return {
     ["orkamsub"] = {
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orkbeaver",
-            [2] = "orkpincer",
-            [3] = "orkjeth",
+            [1] = "orkjeth",
+            [2] = "orkbeaver",
+            [3] = "orkdecom",
             [4] = "orkaak",
-            [5] = "orkdecom",
         },
         ["buildpic"] = "bar40k/orks/armada_templates/armamsub.dds",
         ["buildtime"] = 11100,

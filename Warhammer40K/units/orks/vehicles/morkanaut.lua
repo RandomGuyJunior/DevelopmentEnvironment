@@ -216,7 +216,6 @@ return {
                 },
                 ["edgeeffectiveness"] = 0.15,
                 ["explosiongenerator"] = "custom:plasmahit-small",
-                ["flighttime"] = 0.4,
                 ["gravityaffected"] = "true",
                 ["impulsefactor"] = 0.123,
                 ["intensity"] = 0.7,

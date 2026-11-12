@@ -9,6 +9,7 @@ return {
         ["collide"] = false,
         ["cruisealtitude"] = 100,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["bar40k_stat_template"] = "armhvytrans",
             ["crashable"] = 0,
             ["faction"] = "Orks",

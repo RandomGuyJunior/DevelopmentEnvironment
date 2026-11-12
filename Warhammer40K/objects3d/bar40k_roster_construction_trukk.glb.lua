@@ -1,1 +1,1 @@
-return {["tex1"]="bar40k_orks_shared_tex1.dds",["tex2"]="bar40k_orks_shared_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["mins"]={-11.4467275,0,-23},["maxs"]={11.4467275,19.593503,23},["midpos"]={0,9.79675152,0},["height"]=19.593503,["radius"]=27.4955253}
+return {["tex1"]="bar40k_orks_shared_tex1.dds",["tex2"]="bar40k_orks_shared_tex2.dds",["fliptextures"]=false,["invertteamcolor"]=false,["mins"]={-17.1700912,0,-34.5},["maxs"]={17.1700912,29.3902545,34.5},["midpos"]={0,14.6951273,0},["height"]=29.3902545,["radius"]=41.243288}

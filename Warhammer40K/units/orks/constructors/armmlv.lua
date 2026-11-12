@@ -4,9 +4,9 @@ return {
         ["builddistance"] = 96,
         ["builder"] = true,
         ["buildoptions"] = {
-            [1] = "orkmine1",
-            [2] = "orkmine2",
-            [3] = "orkmine3",
+            [1] = "orkmine2",
+            [2] = "orkmine3",
+            [3] = "orkmine1",
             [4] = "orktrap",
             [5] = "orkeyes",
         },

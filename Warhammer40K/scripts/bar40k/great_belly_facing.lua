@@ -51,7 +51,7 @@ return function()
    local dx,dz=tx-x,tz-z;local distance=math.sqrt(dx*dx+dz*dz)
    if distance>1 and distance<=nativeRange then
     local yaw=(math.atan2(dx,dz)-Spring.GetUnitHeading(unitID)*math.pi/32768+math.pi)%(2*math.pi)-math.pi
-    if math.abs(yaw)>math.rad(1.5)then desiredRange=1 end
+    if math.abs(yaw)>math.rad(24)then desiredRange=1 end
    end
   end
   if desiredRange~=lastRange then

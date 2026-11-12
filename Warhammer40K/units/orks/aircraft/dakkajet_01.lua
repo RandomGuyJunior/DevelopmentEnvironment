@@ -12,6 +12,7 @@ return {
         ["collisionvolumetype"] = "Box",
         ["cruisealtitude"] = 125,
         ["customparams"] = {
+            ["armordef"] = "vtol",
             ["attacksafetydistance"] = 300,
             ["bar40k_source_model"] = "Dakkajet.msh",
             ["bar40k_source_sha256"] = "d67cbab5c8ab7848daabb7b7efa776870d90c4401551705199c068ca178ebbf0",

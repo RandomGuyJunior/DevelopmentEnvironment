@@ -1,6 +1,10 @@
 local shared=include("bar40k/animation_data.lua")("bar40k/bar40k_knight_crusader_animation.lua")
 local data=setmetatable({clips={}}, {__index=shared})
 for k,v in pairs(shared.clips)do data.clips[k]=v end
+local aa={} for k,v in pairs(data.weapons[5])do aa[k]=v end
+aa.sfx=4
+local mounts={} for k,v in pairs(data.weapons)do mounts[k]=v end
+mounts[5]=aa;data.weapons=mounts
 include("bar40k/knight_repaired_actor.lua")(data)
 local nextMuzzle={};local oldQuery,oldShot=script.QueryWeapon,script.Shot
 function script.QueryWeapon(n)local list=data.weapons[n].muzzles;return piece(list[nextMuzzle[n]or 1])end

@@ -30,6 +30,7 @@ local aimUntil, targetYaw, formationYaw, heading = 0, 0, 0, 0
 local targetX,targetZ
 local combat = include('bar40k/animation_data.lua')(cp.squad_combat_profile or 'bar40k/squad_combat_pose.lua')
 if type(combat)=='function' then combat=combat(cp.squad_bank) end
+local artilleryAim=combat.artilleryAim and include('bar40k/artillery_squad_aim.lua')(combat.artilleryAim,aimCenter)
 local contactSlots=data.contactSlots or {{-9,1},{1,-.5},{22,-2},{-19,-1},{-12,-9.5},{12,2},{-22,-11},{-2,-11},{19,-12},{8,-8}}
 local meleeTarget
 local function airborne() return cp.squad_jetpack and Spring.GetUnitRulesParam(unitID,'squad_jetpack_airborne')==1 end
@@ -48,6 +49,7 @@ local function rangedTarget()
   return targetX~=nil
 end
 local function readyToFire(m,f)
+  if artilleryAim and not artilleryAim.Ready(m) then return false end
   if not targetX or m.state~='alive' or f-(m.transitionFrame or f)<12 then return false end
   local x,_,z=Spring.GetUnitPiecePosDir(unitID,m.root)
   local wanted=math.atan2(targetX-x,targetZ-z)
@@ -376,6 +378,7 @@ local function animate()
         m.connectedPose=combat.hierarchy~=nil or mode=='melee' or f<(m.armTransitionUntil or -1)
         if m.connectedPose then row=keepArmsConnected(row);m.basePrevious=row end
         m.instantWalk=mode=='walk'
+        if artilleryAim then row=artilleryAim.Apply(m,row,seconds,f<aimUntil and not meleeTarget) end
         apply(m,row,seconds)
       elseif m.state=='dying' then
         local clip=data.clips[(m.index%3==0 and 'die_alt2') or (m.index%3==1 and 'die') or 'die_alt']
